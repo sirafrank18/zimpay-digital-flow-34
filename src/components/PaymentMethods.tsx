@@ -7,6 +7,7 @@ import {
   CircleCheck, 
   Shield 
 } from "lucide-react";
+import CircleDollarSign from "@/components/icons/CircleDollarSign";
 
 const PaymentMethods = () => {
   return (

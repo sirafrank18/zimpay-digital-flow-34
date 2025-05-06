@@ -9,6 +9,8 @@ import {
   ArrowRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ActivityIcon from "@/components/icons/ActivityIcon";
+import CircleDollarSign from "@/components/icons/CircleDollarSign";
 
 const FeaturesSection = () => {
   return (
