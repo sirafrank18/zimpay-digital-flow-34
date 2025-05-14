@@ -7,9 +7,10 @@ import {
   Users,
   ArrowLeftRight,
   MoreHorizontal,
-  FileInvoice,
+  FileText as FileInvoice, // Replace FileInvoice with FileText as an alias
   DollarSign,
   ArrowRight,
+  Link as LinkIcon, // Import Link as LinkIcon
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";

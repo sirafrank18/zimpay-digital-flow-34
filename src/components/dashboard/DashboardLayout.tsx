@@ -11,7 +11,7 @@ import {
   ChevronDown,
   LogOut,
   X,
-  FileInvoice,
+  FileText as FileInvoice, // Replace FileInvoice with FileText as an alias
   Link as LinkIcon,
   ArrowLeftRight,
   Users,
