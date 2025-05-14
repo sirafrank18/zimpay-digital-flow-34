@@ -8,6 +8,15 @@ import {
   Shield 
 } from "lucide-react";
 import CircleDollarSign from "@/components/icons/CircleDollarSign";
+import {
+  EcoCashIcon,
+  ZimSwitchIcon,
+  OneMoneyIcon,
+  InnBucksIcon,
+  MasterCardIcon,
+  VisaIcon,
+  OmariIcon
+} from "@/components/icons/PaymentIcons";
 
 const PaymentMethods = () => {
   return (
@@ -16,7 +25,7 @@ const PaymentMethods = () => {
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent"></div>
       
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 opacity-0 transition-all duration-700 translate-y-10" data-animate="true">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Zimbabwe's <span className="gradient-text">Local Payment Methods</span>
           </h2>
@@ -30,7 +39,9 @@ const PaymentMethods = () => {
           {paymentMethods.map((method, index) => (
             <div 
               key={index}
-              className="bg-secondary rounded-xl p-6 card-hover border border-gray-800"
+              className="bg-secondary rounded-xl p-6 card-hover border border-gray-800 opacity-0 transition-all duration-700 translate-y-10"
+              data-animate="true"
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className="mb-4">
                 <span className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-brand-orange/10 text-brand-orange">
@@ -54,7 +65,7 @@ const PaymentMethods = () => {
           ))}
         </div>
 
-        <div className="mt-16 bg-brand-navy/50 border border-gray-800 rounded-xl p-6 md:p-8">
+        <div className="mt-16 bg-brand-navy/50 border border-gray-800 rounded-xl p-6 md:p-8 opacity-0 transition-all duration-700 translate-y-10" data-animate="true">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-2/3 mb-6 md:mb-0 md:mr-8">
               <div className="flex items-center mb-4">
@@ -89,40 +100,43 @@ const PaymentMethods = () => {
 
 const paymentMethods = [
   {
-    name: "Mobile Money",
-    icon: <Smartphone className="w-6 h-6" />,
-    description: "Integrate with Zimbabwe's most popular mobile payment methods",
-    features: ["EcoCash", "OneMoney", "Telecash", "Instant Settlement"]
+    name: "EcoCash",
+    icon: <EcoCashIcon />,
+    description: "Zimbabwe's leading mobile money platform with the widest reach",
+    features: ["QR Pay", "USSD", "Push Payments", "Instant Settlement"]
   },
   {
-    name: "Card Payments",
-    icon: <CreditCard className="w-6 h-6" />,
-    description: "Accept both local and international card payments securely",
-    features: ["ZimSwitch", "Visa", "Mastercard", "USD & ZWL"]
+    name: "OneMoney",
+    icon: <OneMoneyIcon />,
+    description: "NetOne's mobile money solution with competitive rates",
+    features: ["USSD", "App Payments", "Cross Network"]
   },
   {
-    name: "Bank Transfers",
-    icon: <CircleDollarSign className="w-6 h-6" />,
-    description: "Connect directly with Zimbabwean banks for seamless transfers",
-    features: ["RTGS", "FCA Accounts", "Batch Transfers"]
+    name: "ZimSwitch",
+    icon: <ZimSwitchIcon />,
+    description: "Zimbabwe's national payment switch for bank-to-bank transfers",
+    features: ["POS", "ATM", "Bank Transfers", "Real-time"]
   },
   {
-    name: "QR Payments",
-    icon: <Smartphone className="w-6 h-6" />,
-    description: "Enable simple scan-to-pay functionality for your customers",
-    features: ["Static QR", "Dynamic QR", "Mobile App"]
+    name: "InnBucks",
+    icon: <InnBucksIcon />,
+    description: "Fast-growing mobile wallet with competitive fees",
+    features: ["P2P", "Merchant Payments", "Mobile App"]
   },
   {
-    name: "USSD Payments",
-    icon: <Smartphone className="w-6 h-6" />,
-    description: "Reach customers without smartphones through USSD payments",
-    features: ["All Networks", "No Internet Required", "SMS Receipts"]
+    name: "International Cards",
+    icon: <div className="flex space-x-1">
+      <VisaIcon />
+      <MasterCardIcon />
+    </div>,
+    description: "Accept major international cards for forex transactions",
+    features: ["Visa", "Mastercard", "USD Settlement", "3D Secure"]
   },
   {
-    name: "International",
-    icon: <CreditCard className="w-6 h-6" />,
-    description: "Accept payments from anywhere in the world with ease",
-    features: ["USD Settlement", "PayPal", "Crypto", "Remittances"]
+    name: "Omari & More",
+    icon: <OmariIcon />,
+    description: "Additional payment options for comprehensive coverage",
+    features: ["Omari", "Bank Transfers", "Batch Payments"]
   },
 ];
 
