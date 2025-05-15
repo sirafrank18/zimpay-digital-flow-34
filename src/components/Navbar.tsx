@@ -74,16 +74,18 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle className="border-gray-600 hover:bg-gray-800" />
-            <Link to="/dashboard">
+            <Link to="/auth/login">
               <Button variant="outline" className="border-brand-orange text-white">
                 Log in
               </Button>
             </Link>
-            <Button
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white"
-            >
-              Sign up
-            </Button>
+            <Link to="/auth/signup">
+              <Button
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white"
+              >
+                Sign up
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -139,19 +141,23 @@ const Navbar = () => {
               Testimonials
             </a>
             <div className="flex flex-col space-y-2 pt-2">
-              <Link to="/dashboard">
+              <Link to="/auth/login">
                 <Button
                   variant="outline"
                   className="border-brand-orange text-white w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Log in
                 </Button>
               </Link>
-              <Button
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full"
-              >
-                Sign up
-              </Button>
+              <Link to="/auth/signup">
+                <Button
+                  className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sign up
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
