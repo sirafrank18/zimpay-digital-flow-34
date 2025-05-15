@@ -74,13 +74,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex w-full h-screen overflow-hidden">
       {/* Left Section - Form */}
       <div 
         className={cn(
-          "w-full md:w-1/2 flex items-center justify-center p-8", 
+          "w-full md:w-1/2 flex items-center justify-center p-8 relative", 
           isExistingUser ? "bg-white dark:bg-brand-navy" : "bg-brand-navy"
         )}
+        style={{
+          borderTopRightRadius: "30% 50%",
+          borderBottomRightRadius: "30% 50%",
+          clipPath: "polygon(0 0, 100% 0%, 85% 100%, 0% 100%)",
+        }}
       >
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
@@ -219,7 +224,7 @@ const Signup = () => {
                 <div className="text-center mt-6">
                   <button
                     type="button"
-                    onClick={toggleView}
+                    onClick={() => navigate("/auth/login")}
                     className="text-sm text-white hover:underline flex items-center justify-center w-full"
                   >
                     Already have an account? <span className="text-brand-orange ml-1">Log in</span>
@@ -232,7 +237,7 @@ const Signup = () => {
             <div className="text-center space-y-4">
               <p className="text-brand-navy dark:text-white">Log in to your existing account</p>
               <Button 
-                onClick={toggleView}
+                onClick={() => navigate("/auth/login")}
                 className="w-full h-12 bg-brand-orange hover:bg-brand-orange/90 text-white"
               >
                 Log In

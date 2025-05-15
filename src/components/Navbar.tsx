@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -8,6 +8,7 @@ import { ThemeToggle } from "@/components/theme/ThemeToggle";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,14 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleLogin = () => {
+    navigate("/auth/login");
+  };
+
+  const handleSignup = () => {
+    navigate("/auth/signup");
+  };
 
   return (
     <header
@@ -74,18 +83,19 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center space-x-4">
             <ThemeToggle className="border-gray-600 hover:bg-gray-800" />
-            <Link to="/auth/login">
-              <Button variant="outline" className="border-brand-orange text-white">
-                Log in
-              </Button>
-            </Link>
-            <Link to="/auth/signup">
-              <Button
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white"
-              >
-                Sign up
-              </Button>
-            </Link>
+            <Button 
+              variant="outline" 
+              className="border-brand-orange text-white"
+              onClick={handleLogin}
+            >
+              Log in
+            </Button>
+            <Button
+              className="bg-brand-orange hover:bg-brand-orange/90 text-white"
+              onClick={handleSignup}
+            >
+              Sign up
+            </Button>
           </div>
 
           {/* Mobile menu button */}
@@ -141,23 +151,25 @@ const Navbar = () => {
               Testimonials
             </a>
             <div className="flex flex-col space-y-2 pt-2">
-              <Link to="/auth/login">
-                <Button
-                  variant="outline"
-                  className="border-brand-orange text-white w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Log in
-                </Button>
-              </Link>
-              <Link to="/auth/signup">
-                <Button
-                  className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Sign up
-                </Button>
-              </Link>
+              <Button
+                variant="outline"
+                className="border-brand-orange text-white w-full"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/auth/login");
+                }}
+              >
+                Log in
+              </Button>
+              <Button
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full"
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/auth/signup");
+                }}
+              >
+                Sign up
+              </Button>
             </div>
           </div>
         </div>

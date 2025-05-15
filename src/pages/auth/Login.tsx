@@ -63,13 +63,18 @@ const Login = () => {
   };
 
   return (
-    <div className="flex w-full h-screen">
+    <div className="flex w-full h-screen overflow-hidden">
       {/* Left Section - Form */}
       <div 
         className={cn(
-          "w-full md:w-1/2 flex items-center justify-center p-8", 
+          "w-full md:w-1/2 flex items-center justify-center p-8 relative", 
           isNewUser ? "bg-brand-navy" : "bg-white dark:bg-brand-navy"
         )}
+        style={{
+          borderTopRightRadius: "30% 50%",
+          borderBottomRightRadius: "30% 50%",
+          clipPath: "polygon(0 0, 100% 0%, 85% 100%, 0% 100%)",
+        }}
       >
         <div className="w-full max-w-md space-y-8">
           <div className="text-center">
@@ -181,7 +186,7 @@ const Login = () => {
                 <div className="text-center mt-6">
                   <button
                     type="button"
-                    onClick={toggleView}
+                    onClick={() => navigate("/auth/signup")}
                     className="text-sm text-brand-navy dark:text-white hover:underline flex items-center justify-center w-full"
                   >
                     Don't have an account? <span className="text-brand-orange ml-1">Sign up</span>
@@ -194,7 +199,7 @@ const Login = () => {
             <div className="text-center space-y-4">
               <p className="text-white">Create a new account to get started with paid.co.zw</p>
               <Button 
-                onClick={toggleView}
+                onClick={() => navigate("/auth/signup")}
                 className="w-full h-12 bg-brand-orange hover:bg-brand-orange/90 text-white"
               >
                 Create Account
