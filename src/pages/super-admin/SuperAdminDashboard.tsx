@@ -1,339 +1,194 @@
 
 import React from "react";
-import {
-  BarChart,
-  Users,
-  Building,
-  CreditCard,
-  TrendingUp,
-  AlertTriangle,
-  CheckCircle,
-  XCircle,
-  ArrowRight,
-  DollarSign,
-} from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  ResponsiveContainer, 
-  AreaChart, 
-  Area, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip,
-  BarChart as RechartsBarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
-  Legend
-} from "recharts";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-// Sample data for charts
-const transactionsData = [
-  { name: "Jan", value: 45000 },
-  { name: "Feb", value: 52000 },
-  { name: "Mar", value: 49000 },
-  { name: "Apr", value: 63000 },
-  { name: "May", value: 58000 },
-  { name: "Jun", value: 71000 },
-  { name: "Jul", value: 75000 }
-];
-
-const paymentMethodData = [
-  { name: "EcoCash", value: 45 },
-  { name: "OneMoney", value: 15 },
-  { name: "Cards", value: 25 },
-  { name: "Bank Transfer", value: 15 }
-];
-
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-const merchantStatusData = [
-  { name: "Jan", active: 23, pending: 12, suspended: 4 },
-  { name: "Feb", active: 28, pending: 10, suspended: 3 },
-  { name: "Mar", active: 32, pending: 8, suspended: 2 },
-  { name: "Apr", active: 38, pending: 9, suspended: 5 },
-  { name: "May", active: 42, pending: 7, suspended: 4 },
-  { name: "Jun", active: 48, pending: 5, suspended: 3 },
-  { name: "Jul", active: 52, pending: 6, suspended: 2 }
-];
+import { BarChart, LineChart, PieChart, Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui";
+import {
+  Users,
+  CreditCard,
+  ArrowUpRight,
+  ArrowDownRight,
+  ChevronRight,
+  Download,
+  BarChart as BarChartIcon,
+  PieChart as PieChartIcon,
+} from "lucide-react";
 
 const SuperAdminDashboard = () => {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-3xl font-bold tracking-tight">Dashboard Overview</h2>
-        <div className="flex items-center space-x-2">
-          <Button variant="outline">
-            Last 30 days
-            <ChevronRight className="ml-2 h-4 w-4" />
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-2xl font-bold">Super Admin Dashboard</h1>
+          <p className="text-muted-foreground">Platform overview and key performance indicators</p>
+        </div>
+        <div className="flex gap-2">
+          <Button variant="outline" size="sm">
+            <Download className="mr-2 h-4 w-4" />
+            Download Report
+          </Button>
+          <Button size="sm">
+            View All Analytics
           </Button>
         </div>
       </div>
 
-      {/* Stats cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-brand-orange" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Merchants</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$123,456</div>
-            <p className="text-xs text-muted-foreground">
-              +20.1% from last month
-            </p>
+            <div className="text-2xl font-bold">5,274</div>
+            <div className="flex items-center text-sm text-green-500">
+              <ArrowUpRight className="mr-1 h-4 w-4" />
+              +12% from last month
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Merchants</CardTitle>
-            <Building className="h-4 w-4 text-brand-orange" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Pending Approvals</CardTitle>
+            <Users className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">182</div>
-            <p className="text-xs text-muted-foreground">
-              +8 new this month
-            </p>
+            <div className="text-2xl font-bold">42</div>
+            <div className="flex items-center text-sm text-yellow-500">
+              <ArrowUpRight className="mr-1 h-4 w-4" />
+              +8 from yesterday
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Users</CardTitle>
-            <Users className="h-4 w-4 text-brand-orange" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Total Transactions</CardTitle>
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">2,543</div>
-            <p className="text-xs text-muted-foreground">
-              +19% from last month
-            </p>
+            <div className="text-2xl font-bold">$853,128.40</div>
+            <div className="flex items-center text-sm text-green-500">
+              <ArrowUpRight className="mr-1 h-4 w-4" />
+              +18.2% from last month
+            </div>
           </CardContent>
         </Card>
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Transactions</CardTitle>
-            <CreditCard className="h-4 w-4 text-brand-orange" />
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium">Failed Transactions</CardTitle>
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">12,234</div>
-            <p className="text-xs text-muted-foreground">
-              +32.1% from last month
-            </p>
+            <div className="text-2xl font-bold">$12,341.50</div>
+            <div className="flex items-center text-sm text-red-500">
+              <ArrowDownRight className="mr-1 h-4 w-4" />
+              -5.2% from last month
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Charts Section */}
-      <Tabs defaultValue="overview">
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Transaction Overview</CardTitle>
+            <CardDescription>
+              Transaction volume over the past 30 days
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <div className="h-80 w-full">
+              {/* We would typically use an actual chart library here like Recharts */}
+              <div className="h-full w-full flex items-center justify-center bg-muted/20 rounded-md">
+                <BarChartIcon className="h-16 w-16 text-muted" />
+                <span className="ml-2 text-muted font-medium">Transaction Volume Chart</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Payment Methods</CardTitle>
+            <CardDescription>
+              Distribution by payment type
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-80 w-full">
+              {/* We would typically use an actual chart library here like Recharts */}
+              <div className="h-full w-full flex items-center justify-center bg-muted/20 rounded-md">
+                <PieChartIcon className="h-16 w-16 text-muted" />
+                <span className="ml-2 text-muted font-medium">Payment Methods Chart</span>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <Tabs defaultValue="recent">
         <TabsList>
-          <TabsTrigger value="overview">Overview</TabsTrigger>
-          <TabsTrigger value="merchants">Merchants</TabsTrigger>
-          <TabsTrigger value="transactions">Transactions</TabsTrigger>
+          <TabsTrigger value="recent">Recent Activities</TabsTrigger>
+          <TabsTrigger value="pending">Pending Approvals</TabsTrigger>
+          <TabsTrigger value="alerts">System Alerts</TabsTrigger>
         </TabsList>
-        <TabsContent value="overview" className="space-y-4">
+        <TabsContent value="recent" className="p-0 pt-4">
           <Card>
             <CardHeader>
-              <CardTitle>Revenue Overview</CardTitle>
-              <CardDescription>Total revenue across all payment methods over time</CardDescription>
+              <CardTitle>Recent Activities</CardTitle>
+              <CardDescription>
+                Latest system and user activities
+              </CardDescription>
             </CardHeader>
-            <CardContent className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                  data={transactionsData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                >
-                  <defs>
-                    <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#FF7300" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#FF7300" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="name" tick={{fill: '#888'}} />
-                  <YAxis tick={{fill: '#888'}} />
-                  <Tooltip contentStyle={{background: '#222', border: 'none'}} />
-                  <Area type="monotone" dataKey="value" stroke="#FF7300" fillOpacity={1} fill="url(#colorValue)" />
-                </AreaChart>
-              </ResponsiveContainer>
-            </CardContent>
-          </Card>
-          
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card>
-              <CardHeader>
-                <CardTitle>Payment Methods</CardTitle>
-                <CardDescription>Distribution of payment methods used</CardDescription>
-              </CardHeader>
-              <CardContent className="h-80">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={paymentMethodData}
-                      cx="50%"
-                      cy="50%"
-                      labelLine={false}
-                      outerRadius={80}
-                      fill="#8884d8"
-                      dataKey="value"
-                      label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
-                    >
-                      {paymentMethodData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Legend />
-                    <Tooltip formatter={(value) => `${value}%`} />
-                  </PieChart>
-                </ResponsiveContainer>
-              </CardContent>
-            </Card>
-            
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>System alerts and notifications</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium">New merchant approval required</p>
-                    <p className="text-xs text-muted-foreground">Zimbabwe Tech Ltd. awaiting verification</p>
-                    <p className="text-xs text-muted-foreground">2 hours ago</p>
+            <CardContent>
+              {/* Activity list would go here */}
+              <div className="space-y-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex justify-between items-center border-b pb-2">
+                    <div>
+                      <p className="font-medium">Merchant Onboarding {i + 1}</p>
+                      <p className="text-sm text-muted-foreground">Approved by Admin</p>
+                    </div>
+                    <div className="text-sm text-muted-foreground">
+                      {new Date().toLocaleDateString()}
+                    </div>
+                    <Button variant="ghost" size="sm">
+                      <ChevronRight className="h-4 w-4" />
+                    </Button>
                   </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium">Payment method integration successful</p>
-                    <p className="text-xs text-muted-foreground">OneMoney API connected successfully</p>
-                    <p className="text-xs text-muted-foreground">5 hours ago</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <XCircle className="h-5 w-5 text-red-500 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium">Failed login attempts detected</p>
-                    <p className="text-xs text-muted-foreground">Multiple attempts from IP 192.168.1.45</p>
-                    <p className="text-xs text-muted-foreground">Yesterday</p>
-                  </div>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <TrendingUp className="h-5 w-5 text-brand-orange mt-0.5" />
-                  <div>
-                    <p className="text-sm font-medium">Transaction volume spike detected</p>
-                    <p className="text-xs text-muted-foreground">30% increase in last hour</p>
-                    <p className="text-xs text-muted-foreground">Yesterday</p>
-                  </div>
-                </div>
-              </CardContent>
-              <CardFooter>
-                <Button variant="outline" size="sm" className="w-full">
-                  View all activity
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
-        </TabsContent>
-        <TabsContent value="merchants">
-          <Card>
-            <CardHeader>
-              <CardTitle>Merchant Status Overview</CardTitle>
-              <CardDescription>Active, pending, and suspended merchants</CardDescription>
-            </CardHeader>
-            <CardContent className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <RechartsBarChart
-                  data={merchantStatusData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                >
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="name" tick={{fill: '#888'}} />
-                  <YAxis tick={{fill: '#888'}} />
-                  <Tooltip contentStyle={{background: '#222', border: 'none'}} />
-                  <Legend />
-                  <Bar dataKey="active" stackId="a" fill="#4CAF50" />
-                  <Bar dataKey="pending" stackId="a" fill="#FFC107" />
-                  <Bar dataKey="suspended" stackId="a" fill="#F44336" />
-                </RechartsBarChart>
-              </ResponsiveContainer>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </TabsContent>
-        <TabsContent value="transactions">
+        <TabsContent value="pending" className="p-0 pt-4">
           <Card>
             <CardHeader>
-              <CardTitle>Transaction Volume</CardTitle>
-              <CardDescription>Daily transaction volume over time</CardDescription>
+              <CardTitle>Pending Approvals</CardTitle>
+              <CardDescription>
+                Items waiting for your review
+              </CardDescription>
             </CardHeader>
-            <CardContent className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart
-                  data={transactionsData}
-                  margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                >
-                  <defs>
-                    <linearGradient id="colorTransactions" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#2196F3" stopOpacity={0.8}/>
-                      <stop offset="95%" stopColor="#2196F3" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
-                  <CartesianGrid strokeDasharray="3 3" opacity={0.2} />
-                  <XAxis dataKey="name" tick={{fill: '#888'}} />
-                  <YAxis tick={{fill: '#888'}} />
-                  <Tooltip contentStyle={{background: '#222', border: 'none'}} />
-                  <Area type="monotone" dataKey="value" stroke="#2196F3" fillOpacity={1} fill="url(#colorTransactions)" />
-                </AreaChart>
-              </ResponsiveContainer>
+            <CardContent>
+              {/* Approval items would go here */}
+              <p>Pending approval content</p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="alerts" className="p-0 pt-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>System Alerts</CardTitle>
+              <CardDescription>
+                Important system notifications
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {/* Alerts would go here */}
+              <p>System alerts content</p>
             </CardContent>
           </Card>
         </TabsContent>
       </Tabs>
-      
-      {/* Recent Registrations */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Merchant Registrations</CardTitle>
-          <CardDescription>New businesses onboarded to the platform</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {[
-              { name: 'Harare Tech Solutions', date: '2023-05-12', status: 'Approved' },
-              { name: 'Bulawayo Retail Group', date: '2023-05-11', status: 'Pending' },
-              { name: 'Victoria Falls Tours', date: '2023-05-09', status: 'Approved' },
-              { name: 'Mutare Digital Services', date: '2023-05-07', status: 'Pending' },
-            ].map((merchant) => (
-              <div key={merchant.name} className="flex items-center justify-between border-b border-muted pb-4">
-                <div>
-                  <p className="font-medium">{merchant.name}</p>
-                  <p className="text-sm text-muted-foreground">Registered on {merchant.date}</p>
-                </div>
-                <div>
-                  <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                    merchant.status === 'Approved' 
-                      ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300' 
-                      : 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300'
-                  }`}>
-                    {merchant.status}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-        <CardFooter className="border-t flex justify-between">
-          <Button variant="ghost">Export List</Button>
-          <Button variant="outline">
-            View All
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </CardFooter>
-      </Card>
     </div>
   );
 };
