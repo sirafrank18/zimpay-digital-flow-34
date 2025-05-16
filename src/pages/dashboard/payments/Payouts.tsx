@@ -1,6 +1,6 @@
 
 import React from "react";
-import { ArrowUpFromLine, BankIcon, Clock } from "lucide-react";
+import { ArrowUpFromLine, Bank, Clock } from "lucide-react"; // Changed BankIcon to Bank
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -60,7 +60,7 @@ const Payouts = () => {
         <Button 
           className="bg-brand-orange hover:bg-brand-orange/90 text-white flex items-center gap-2"
         >
-          <BankIcon className="h-4 w-4" />
+          <Bank className="h-4 w-4" /> {/* Changed BankIcon to Bank */}
           Manage Bank Accounts
         </Button>
       </div>
