@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { 
   Shield, 
@@ -16,8 +15,7 @@ import {
   ZimSwitchIcon,
   OneMoneyIcon,
   InnBucksIcon,
-  MasterCardIcon,
-  VisaIcon,
+  CombinedCardIcon,
   OmariIcon
 } from "@/components/icons/PaymentIcons";
 
@@ -88,11 +86,11 @@ const FeaturesSection = () => {
             Supported <span className="gradient-text">Payment Methods</span>
           </h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {paymentLogos.map((logo, index) => (
               <div 
                 key={index}
-                className="bg-brand-navy/50 p-4 rounded-xl border border-gray-800 flex items-center justify-center h-20
+                className="bg-brand-navy/50 p-4 rounded-xl border border-gray-800 flex items-center justify-center h-24
                 opacity-0 transition-all duration-500 translate-y-10"
                 data-animate="true"
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -167,12 +165,8 @@ const paymentLogos = [
     icon: <InnBucksIcon />
   },
   {
-    name: "Visa",
-    icon: <VisaIcon />
-  },
-  {
-    name: "MasterCard",
-    icon: <MasterCardIcon />
+    name: "Cards",
+    icon: <CombinedCardIcon />
   },
   {
     name: "Omari",

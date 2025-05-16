@@ -13,8 +13,7 @@ import {
   ZimSwitchIcon,
   OneMoneyIcon,
   InnBucksIcon,
-  MasterCardIcon,
-  VisaIcon,
+  CombinedCardIcon,
   OmariIcon
 } from "@/components/icons/PaymentIcons";
 
@@ -125,10 +124,7 @@ const paymentMethods = [
   },
   {
     name: "International Cards",
-    icon: <div className="flex items-center space-x-4">
-      <VisaIcon />
-      <MasterCardIcon />
-    </div>,
+    icon: <CombinedCardIcon />,
     description: "Accept major international cards for forex transactions",
     features: ["Visa", "Mastercard", "USD Settlement", "3D Secure"]
   },
