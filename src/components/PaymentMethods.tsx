@@ -125,7 +125,7 @@ const paymentMethods = [
   },
   {
     name: "International Cards",
-    icon: <div className="flex space-x-1">
+    icon: <div className="flex space-x-3">
       <VisaIcon />
       <MasterCardIcon />
     </div>,

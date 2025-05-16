@@ -206,7 +206,7 @@ const Login = () => {
           isAnimated ? "translate-x-0" : "translate-x-[50px] opacity-0"
         )}
       >
-        <div className="absolute w-[250%] h-[100%] bg-brand-orange rounded-[150px] -left-[150%] transition-all duration-500"></div>
+        <div className="absolute w-[250%] h-[100%] bg-brand-orange rounded-[150px] -right-[150%] transition-all duration-700"></div>
         
         <div className="max-w-md text-center z-10">
           <h2 className="text-3xl font-bold mb-6 text-white relative z-10">
