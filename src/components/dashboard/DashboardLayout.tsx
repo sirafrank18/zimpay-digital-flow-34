@@ -131,7 +131,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                         "flex items-center w-full px-2 py-2 rounded-md transition-colors",
                         location.pathname.startsWith(item.href)
                           ? "bg-brand-orange/10 text-brand-orange"
-                          : "hover:bg-gray-100 dark:hover:bg-gray-800",
+                          : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10",
                         !isSidebarOpen && "justify-center"
                       )}
                     >
@@ -158,7 +158,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                                 "flex items-center px-2 py-2 text-sm rounded-md transition-colors",
                                 location.pathname === child.href
                                   ? "bg-brand-orange/10 text-brand-orange"
-                                  : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                                  : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
                               )}
                             >
                               <div className="w-1 h-1 rounded-full bg-current mr-2" />
@@ -176,7 +176,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                       "flex items-center px-2 py-2 rounded-md transition-colors",
                       location.pathname === item.href
                         ? "bg-brand-orange/10 text-brand-orange"
-                        : "hover:bg-gray-100 dark:hover:bg-gray-800",
+                        : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10",
                       !isSidebarOpen && "justify-center"
                     )}
                   >

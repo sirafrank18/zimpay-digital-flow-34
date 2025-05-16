@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,18 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import DashboardRoot from "./pages/dashboard/DashboardRoot";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Reports from "./pages/dashboard/Reports";
+import Transactions from "./pages/dashboard/payments/Transactions";
+import PaymentLinks from "./pages/dashboard/payments/PaymentLinks";
+import Invoices from "./pages/dashboard/payments/Invoices";
+import Payouts from "./pages/dashboard/payments/Payouts";
+import Fees from "./pages/dashboard/payments/Fees";
+import Applications from "./pages/dashboard/Applications";
+import Business from "./pages/dashboard/Business";
+import Users from "./pages/dashboard/Users";
+import Sandbox from "./pages/dashboard/sandbox/Sandbox";
+import SandboxPayments from "./pages/dashboard/sandbox/SandboxPayments";
+import SandboxTransactions from "./pages/dashboard/sandbox/SandboxTransactions";
 
 // Auth Pages
 import AuthLayout from "./pages/auth/AuthLayout";
@@ -46,7 +57,29 @@ const App = () => (
             {/* Dashboard Routes */}
             <Route path="/dashboard" element={<DashboardRoot />}>
               <Route index element={<Dashboard />} />
-              {/* Other dashboard routes will be added here */}
+              <Route path="reports" element={<Reports />} />
+              
+              {/* Payments Routes */}
+              <Route path="payments">
+                <Route index element={<Navigate to="/dashboard/payments/transactions" replace />} />
+                <Route path="transactions" element={<Transactions />} />
+                <Route path="invoices" element={<Invoices />} />
+                <Route path="links" element={<PaymentLinks />} />
+                <Route path="payouts" element={<Payouts />} />
+                <Route path="fees" element={<Fees />} />
+              </Route>
+              
+              {/* Other Dashboard Routes */}
+              <Route path="applications" element={<Applications />} />
+              <Route path="business" element={<Business />} />
+              <Route path="users" element={<Users />} />
+              
+              {/* Sandbox Routes */}
+              <Route path="sandbox">
+                <Route index element={<Sandbox />} />
+                <Route path="payments" element={<SandboxPayments />} />
+                <Route path="transactions" element={<SandboxTransactions />} />
+              </Route>
             </Route>
             
             {/* Super Admin Routes */}

@@ -45,7 +45,7 @@ export const InnBucksIcon = () => (
 );
 
 export const MasterCardIcon = () => (
-  <div className="flex items-center justify-center bg-white p-2 rounded shadow text-xs">
+  <div className="flex items-center justify-center bg-white p-2 rounded shadow text-xs mx-1">
     <div className="flex">
       <div className="w-5 h-5 rounded-full bg-red-500 opacity-80 mr-[2px]"></div>
       <div className="w-5 h-5 rounded-full bg-yellow-500 opacity-80 ml-[-8px]"></div>
@@ -55,7 +55,7 @@ export const MasterCardIcon = () => (
 );
 
 export const VisaIcon = () => (
-  <div className="flex items-center justify-center bg-[#1434CB] p-2 rounded text-white font-bold text-xs">
+  <div className="flex items-center justify-center bg-[#1434CB] p-2 rounded text-white font-bold text-xs mx-1">
     <div className="h-4 w-8 relative">
       <div className="absolute top-0 left-0 w-full h-full flex items-center">
         <div className="font-bold text-white text-xl transform -translate-y-[1px]">VISA</div>

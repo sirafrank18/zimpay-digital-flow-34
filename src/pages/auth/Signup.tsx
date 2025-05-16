@@ -1,15 +1,22 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { SignupForm } from "@/components/auth/SignupForm";
 import { LoginPrompt } from "@/components/auth/LoginPrompt";
-import { BrandingSection } from "@/components/auth/BrandingSection";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
 const Signup = () => {
   const navigate = useNavigate();
   const [isExistingUser, setIsExistingUser] = useState(false);
+  const [isAnimated, setIsAnimated] = useState(false);
+
+  useEffect(() => {
+    // Add animation class after component mounts
+    setTimeout(() => {
+      setIsAnimated(true);
+    }, 100);
+  }, []);
 
   const toggleView = () => {
     setIsExistingUser(!isExistingUser);
@@ -19,7 +26,10 @@ const Signup = () => {
     <div className="flex w-full h-screen overflow-hidden">
       {/* Left Section - Form */}
       <div 
-        className="w-full md:w-1/2 flex items-center justify-center p-8 relative bg-white dark:bg-brand-navy"
+        className={cn(
+          "w-full md:w-1/2 flex items-center justify-center p-8 relative bg-white dark:bg-brand-navy transition-all duration-500",
+          isAnimated ? "translate-x-0" : "translate-x-[-50px] opacity-0"
+        )}
         style={{
           borderRadius: "30px",
           boxShadow: "0 0 30px rgba(0, 0, 0, .2)",
@@ -48,7 +58,10 @@ const Signup = () => {
 
       {/* Right Section - Branding/Image */}
       <div 
-        className="hidden md:flex md:w-1/2 flex-col items-center justify-center p-12 bg-brand-navy relative overflow-hidden"
+        className={cn(
+          "hidden md:flex md:w-1/2 flex-col items-center justify-center p-12 bg-brand-navy relative overflow-hidden",
+          isAnimated ? "translate-x-0" : "translate-x-[50px] opacity-0"
+        )}
       >
         <div className="absolute w-[250%] h-[100%] bg-brand-orange rounded-[150px] -left-[150%] transition-all duration-500"></div>
         
@@ -62,7 +75,7 @@ const Signup = () => {
           
           <Button 
             onClick={() => navigate("/auth/login")}
-            className="w-40 h-12 bg-transparent border-2 border-white hover:bg-white/10 text-white relative z-10"
+            className="w-40 h-12 bg-transparent border-2 border-white hover:bg-white/10 text-white relative z-10 transition-all duration-300"
           >
             Log In
           </Button>
