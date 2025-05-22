@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -10,7 +11,7 @@ import {
   ChevronDown,
   LogOut,
   X,
-  FileText as FileInvoice, // Replace FileInvoice with FileText as an alias
+  FileText as FileInvoice,
   Link as LinkIcon,
   ArrowLeftRight,
   Users,
@@ -78,7 +79,7 @@ const mainNavItems: MenuItem[] = [
 ];
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const location = useLocation();
   const navigate = useNavigate();
@@ -96,119 +97,130 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <div className="min-h-screen flex dark:bg-brand-navy bg-gray-50 transition-colors duration-200">
-      {/* Sidebar for larger screens */}
-      <aside
-        className={cn(
-          "fixed inset-y-0 z-20 flex flex-col border-r dark:border-gray-800 border-gray-200 bg-white dark:bg-secondary transition-all duration-300 lg:relative",
-          isSidebarOpen ? "w-64" : "w-[70px]"
-        )}
-      >
-        <div className="flex items-center justify-between h-16 px-4">
-          <Link to="/dashboard" className={cn("flex items-center", !isSidebarOpen && "justify-center")}>
-            <span className="text-2xl font-bold dark:text-white text-gray-900">
-              paid<span className="text-brand-orange">.co.zw</span>
-            </span>
-          </Link>
+    <div className="min-h-screen flex flex-col dark:bg-brand-navy bg-gray-50 transition-colors duration-200">
+      {/* Mobile Header */}
+      <header className="lg:hidden sticky top-0 z-30 flex items-center justify-between border-b dark:border-gray-800 border-gray-200 px-4 h-16 dark:bg-secondary bg-white">
+        <div className="flex items-center">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-            className="lg:flex hidden"
           >
-            <ChevronRight
-              className={cn(
-                "h-4 w-4 transition-transform",
-                !isSidebarOpen && "rotate-180"
-              )}
-            />
+            <Menu className="h-5 w-5" />
           </Button>
+          <Link to="/dashboard" className="ml-2">
+            <span className="text-xl font-bold dark:text-white text-gray-900">
+              paid<span className="text-brand-orange">.co.zw</span>
+            </span>
+          </Link>
         </div>
+        <div className="flex items-center space-x-2">
+          <ThemeToggle />
+        </div>
+      </header>
+      
+      {/* Sidebar for all screens */}
+      <div className="flex flex-1 overflow-hidden">
+        <aside
+          className={cn(
+            "fixed inset-y-0 left-0 z-40 flex flex-col border-r dark:border-gray-800 border-gray-200 bg-white dark:bg-secondary w-64 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          )}
+        >
+          {/* Sidebar Header with Close Button for Mobile */}
+          <div className="flex items-center justify-between h-16 px-4 border-b dark:border-gray-800 border-gray-200">
+            <Link to="/dashboard" className="flex items-center">
+              <span className="text-xl font-bold dark:text-white text-gray-900">
+                paid<span className="text-brand-orange">.co.zw</span>
+              </span>
+            </Link>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsSidebarOpen(false)}
+              className="lg:hidden"
+            >
+              <X className="h-5 w-5" />
+            </Button>
+          </div>
 
-        <nav className="flex-1 overflow-y-auto">
-          <ul className="space-y-1 p-2">
-            {mainNavItems.map((item) => (
-              <li key={item.title}>
-                {item.children ? (
-                  <div className="space-y-1">
-                    <button
-                      onClick={() => toggleExpand(item.title)}
-                      className={cn(
-                        "flex items-center w-full px-2 py-2 rounded-md transition-colors",
-                        location.pathname.startsWith(item.href)
-                          ? "bg-brand-orange/10 text-brand-orange"
-                          : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10",
-                        !isSidebarOpen && "justify-center"
+          <nav className="flex-1 overflow-y-auto">
+            <ul className="space-y-1 p-2">
+              {mainNavItems.map((item) => (
+                <li key={item.title}>
+                  {item.children ? (
+                    <div className="space-y-1">
+                      <button
+                        onClick={() => toggleExpand(item.title)}
+                        className={cn(
+                          "flex items-center w-full px-2 py-2 rounded-md transition-colors",
+                          location.pathname.startsWith(item.href)
+                            ? "bg-brand-orange/10 text-brand-orange"
+                            : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                        )}
+                      >
+                        {item.icon}
+                        <span className="ml-3 flex-1 text-left">{item.title}</span>
+                        <ChevronDown
+                          className={cn(
+                            "h-4 w-4 transition-transform",
+                            expandedItems[item.title] && "rotate-180"
+                          )}
+                        />
+                      </button>
+                      {expandedItems[item.title] && (
+                        <ul className="pl-6 space-y-1">
+                          {item.children.map((child) => (
+                            <li key={child.title}>
+                              <Link
+                                to={child.href}
+                                className={cn(
+                                  "flex items-center px-2 py-2 text-sm rounded-md transition-colors",
+                                  location.pathname === child.href
+                                    ? "bg-brand-orange/10 text-brand-orange"
+                                    : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                                )}
+                                onClick={() => setIsSidebarOpen(false)}
+                              >
+                                <div className="w-1 h-1 rounded-full bg-current mr-2" />
+                                {child.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
                       )}
+                    </div>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={cn(
+                        "flex items-center px-2 py-2 rounded-md transition-colors",
+                        location.pathname === item.href
+                          ? "bg-brand-orange/10 text-brand-orange"
+                          : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                      )}
+                      onClick={() => setIsSidebarOpen(false)}
                     >
                       {item.icon}
-                      {isSidebarOpen && (
-                        <>
-                          <span className="ml-3 flex-1 text-left">{item.title}</span>
-                          <ChevronDown
-                            className={cn(
-                              "h-4 w-4 transition-transform",
-                              expandedItems[item.title] && "rotate-180"
-                            )}
-                          />
-                        </>
-                      )}
-                    </button>
-                    {(isSidebarOpen && expandedItems[item.title]) && (
-                      <ul className="pl-6 space-y-1">
-                        {item.children.map((child) => (
-                          <li key={child.title}>
-                            <Link
-                              to={child.href}
-                              className={cn(
-                                "flex items-center px-2 py-2 text-sm rounded-md transition-colors",
-                                location.pathname === child.href
-                                  ? "bg-brand-orange/10 text-brand-orange"
-                                  : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
-                              )}
-                            >
-                              <div className="w-1 h-1 rounded-full bg-current mr-2" />
-                              {child.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    to={item.href}
-                    className={cn(
-                      "flex items-center px-2 py-2 rounded-md transition-colors",
-                      location.pathname === item.href
-                        ? "bg-brand-orange/10 text-brand-orange"
-                        : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10",
-                      !isSidebarOpen && "justify-center"
-                    )}
-                  >
-                    {item.icon}
-                    {isSidebarOpen && <span className="ml-3">{item.title}</span>}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </nav>
+                      <span className="ml-3">{item.title}</span>
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
 
-        <div className="p-4 border-t dark:border-gray-800 border-gray-200">
-          <div className="flex items-center justify-between">
-            <div className={cn("flex items-center", !isSidebarOpen && "justify-center w-full")}>
-              <div className="h-8 w-8 rounded-full bg-brand-orange text-white flex items-center justify-center">
-                ZP
-              </div>
-              {isSidebarOpen && (
+          <div className="p-4 border-t dark:border-gray-800 border-gray-200">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <div className="h-8 w-8 rounded-full bg-brand-orange text-white flex items-center justify-center">
+                  ZP
+                </div>
                 <div className="ml-2">
                   <div className="font-medium dark:text-white text-gray-900">Zimbabwe Payments</div>
                   <div className="text-xs text-gray-500 dark:text-gray-400">Admin</div>
                 </div>
-              )}
-            </div>
-            {isSidebarOpen && (
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
@@ -217,46 +229,46 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               >
                 <LogOut className="h-4 w-4" />
               </Button>
-            )}
+            </div>
           </div>
-        </div>
-      </aside>
+        </aside>
 
-      {/* Mobile sidebar overlay */}
-      <div
-        className={cn(
-          "fixed inset-0 z-10 bg-gray-900/50 transition-opacity lg:hidden",
-          isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        {/* Overlay for mobile sidebar */}
+        {isSidebarOpen && (
+          <div 
+            className="fixed inset-0 z-30 bg-black/50 lg:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
         )}
-        onClick={() => setIsSidebarOpen(false)}
-      />
 
-      {/* Main content */}
-      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-        <header className="h-16 flex items-center justify-between border-b dark:border-gray-800 border-gray-200 px-4 dark:bg-secondary bg-white">
-          <div className="flex items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsSidebarOpen(true)}
-              className="lg:hidden"
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">
-              <LogOut className="h-4 w-4" />
-              <span>Logout</span>
-            </Button>
-            <ThemeToggle />
-            <Button variant="outline" size="sm">Upgrade</Button>
-          </div>
-        </header>
+        {/* Main content */}
+        <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+          {/* Desktop Header */}
+          <header className="hidden lg:flex h-16 items-center justify-between border-b dark:border-gray-800 border-gray-200 px-4 dark:bg-secondary bg-white">
+            <div className="flex items-center">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                className="lg:hidden"
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </Button>
+              <ThemeToggle />
+              <Button variant="outline" size="sm">Upgrade</Button>
+            </div>
+          </header>
 
-        <main className="flex-1 overflow-y-auto px-4 py-6">
-          {children}
-        </main>
+          <main className="flex-1 overflow-y-auto p-4">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );
