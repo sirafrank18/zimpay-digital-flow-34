@@ -1,6 +1,5 @@
-
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   CreditCard,
   Home,
@@ -20,6 +19,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import { toast } from "sonner";
 
 type MenuItem = {
   title: string;
@@ -81,12 +81,18 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
   const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleExpand = (title: string) => {
     setExpandedItems((prev) => ({
       ...prev,
       [title]: !prev[title],
     }));
+  };
+  
+  const handleLogout = () => {
+    toast.success("Logged out successfully");
+    navigate("/auth/login");
   };
 
   return (
@@ -207,6 +213,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                 variant="ghost"
                 size="icon"
                 className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+                onClick={handleLogout}
               >
                 <LogOut className="h-4 w-4" />
               </Button>
@@ -238,6 +245,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
             </Button>
           </div>
           <div className="flex items-center space-x-2">
+            <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">
+              <LogOut className="h-4 w-4" />
+              <span>Logout</span>
+            </Button>
             <ThemeToggle />
             <Button variant="outline" size="sm">Upgrade</Button>
           </div>
