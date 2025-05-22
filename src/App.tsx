@@ -23,8 +23,7 @@ import SandboxTransactions from "./pages/dashboard/sandbox/SandboxTransactions";
 
 // Auth Pages
 import AuthLayout from "./pages/auth/AuthLayout";
-import Login from "./pages/auth/Login";
-import Signup from "./pages/auth/Signup";
+import AuthPage from "./pages/auth/AuthPage"; 
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import Onboarding from "./pages/onboarding/Onboarding";
 
@@ -46,8 +45,8 @@ const App = () => (
             
             {/* Auth Routes */}
             <Route path="/auth" element={<AuthLayout />}>
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
+              <Route path="login" element={<AuthPage />} />
+              <Route path="signup" element={<AuthPage />} />
               <Route path="forgot-password" element={<ForgotPassword />} />
             </Route>
             

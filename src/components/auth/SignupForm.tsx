@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { z } from "zod";
@@ -34,9 +33,10 @@ export type SignupFormValues = z.infer<typeof signupSchema>;
 
 interface SignupFormProps {
   textColor: string;
+  onToggleView?: () => void;
 }
 
-export const SignupForm = ({ textColor }: SignupFormProps) => {
+export const SignupForm = ({ textColor, onToggleView }: SignupFormProps) => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -274,7 +274,7 @@ export const SignupForm = ({ textColor }: SignupFormProps) => {
         <div className="text-center mt-6">
           <Button
             type="button"
-            onClick={() => navigate("/auth/login")}
+            onClick={onToggleView}
             className="text-sm bg-transparent hover:bg-transparent p-0 flex items-center justify-center w-full"
           >
             <span className={textColor}>Already have an account?</span> 
