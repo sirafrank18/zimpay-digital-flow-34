@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Outlet, useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -19,7 +18,7 @@ const SuperAdminLayout = () => {
 
   const completeLogout = () => {
     toast.success("Logged out successfully");
-    navigate("/auth/login");
+    navigate("/");
   };
 
   const sidebarLinks = [

@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -33,7 +32,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const completeLogout = () => {
     toast.success("Logged out successfully");
-    navigate("/auth/login");
+    navigate("/");
   };
 
   return (
