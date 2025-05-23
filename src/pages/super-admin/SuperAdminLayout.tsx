@@ -6,12 +6,18 @@ import { LogOut, Menu, X } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
+import SimpleThanosEffect from "@/components/effects/SimpleThanosEffect";
 
 const SuperAdminLayout = () => {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDisintegrating, setIsDisintegrating] = useState(false);
 
   const handleLogout = () => {
+    setIsDisintegrating(true);
+  };
+
+  const completeLogout = () => {
     toast.success("Logged out successfully");
     navigate("/auth/login");
   };
@@ -96,15 +102,17 @@ const SuperAdminLayout = () => {
           
           {/* Sidebar Footer */}
           <div className="border-t border-slate-200 dark:border-slate-800 p-4">
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="w-full flex items-center justify-center gap-2"
-              onClick={handleLogout}
-            >
-              <LogOut className="h-4 w-4" />
-              <span>Logout</span>
-            </Button>
+            <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout}>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="w-full flex items-center justify-center gap-2"
+                onClick={handleLogout}
+              >
+                <LogOut className="h-4 w-4" />
+                <span>Logout</span>
+              </Button>
+            </SimpleThanosEffect>
           </div>
         </aside>
         
@@ -125,15 +133,17 @@ const SuperAdminLayout = () => {
             </h1>
             <div className="flex items-center gap-3">
               <ThemeToggle />
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="flex items-center gap-2"
-                onClick={handleLogout}
-              >
-                <LogOut className="h-4 w-4" />
-                <span>Logout</span>
-              </Button>
+              <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout}>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="flex items-center gap-2"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </Button>
+              </SimpleThanosEffect>
             </div>
           </header>
 

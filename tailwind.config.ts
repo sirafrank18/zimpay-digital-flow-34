@@ -102,6 +102,11 @@ export default {
         "spin-slow": {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" }
+        },
+        "thanos-disintegrate": {
+          "0%": { opacity: "1", filter: "blur(0px)" },
+          "50%": { opacity: "0.5", filter: "blur(2px)" },
+          "100%": { opacity: "0", filter: "blur(4px)" }
         }
       },
       animation: {
@@ -111,7 +116,8 @@ export default {
         "fade-out": "fade-out 0.5s ease-out",
         "float": "float 3s ease-in-out infinite",
         "pulse-slow": "pulse-slow 3s ease-in-out infinite",
-        "spin-slow": "spin-slow 20s linear infinite"
+        "spin-slow": "spin-slow 20s linear infinite",
+        "thanos": "thanos-disintegrate 1.5s forwards"
       }
     }
   },

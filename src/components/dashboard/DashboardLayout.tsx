@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { toast } from "sonner";
+import SimpleThanosEffect from "@/components/effects/SimpleThanosEffect";
 
 type MenuItem = {
   title: string;
@@ -81,6 +82,7 @@ const mainNavItems: MenuItem[] = [
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({});
+  const [isDisintegrating, setIsDisintegrating] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -92,6 +94,10 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
   
   const handleLogout = () => {
+    setIsDisintegrating(true);
+  };
+
+  const completeLogout = () => {
     toast.success("Logged out successfully");
     navigate("/auth/login");
   };
@@ -221,14 +227,16 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                   <div className="text-xs text-gray-500 dark:text-gray-400">Admin</div>
                 </div>
               </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
-                onClick={handleLogout}
-              >
-                <LogOut className="h-4 w-4" />
-              </Button>
+              <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout}>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
+              </SimpleThanosEffect>
             </div>
           </div>
         </aside>
@@ -256,10 +264,12 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
               </Button>
             </div>
             <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">
-                <LogOut className="h-4 w-4" />
-                <span>Logout</span>
-              </Button>
+              <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout}>
+                <Button variant="outline" size="sm" onClick={handleLogout} className="flex items-center gap-2">
+                  <LogOut className="h-4 w-4" />
+                  <span>Logout</span>
+                </Button>
+              </SimpleThanosEffect>
               <ThemeToggle />
               <Button variant="outline" size="sm">Upgrade</Button>
             </div>
