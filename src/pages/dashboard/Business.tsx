@@ -1,11 +1,11 @@
-
 import React, { useState } from "react";
-import { Building, MapPin, Phone, Mail, Globe, Upload, FileText, Download, Search, Plus } from "lucide-react";
+import { Building, MapPin, Phone, Mail, Globe, Upload, FileText, Download, Search, Plus, Edit2, Save, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import EditBusinessForm from "@/components/dashboard/EditBusinessForm";
@@ -52,7 +52,8 @@ interface Director {
 
 const Business = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [businessInfo, setBusinessInfo] = useState<BusinessInfo>({
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedBusinessInfo, setEditedBusinessInfo] = useState<BusinessInfo>({
     name: "SoluGrowth FinTech",
     address: "Office 14 Salaamat Building Corner G.Silundika and 9th Avenue Bulawayo",
     email: "hello@imali.co.zw",
@@ -70,6 +71,7 @@ const Business = () => {
     lastModifiedBy: "webster",
     lastModifiedDate: "2024-07-03 22:52:28"
   });
+  const [businessInfo, setBusinessInfo] = useState<BusinessInfo>(editedBusinessInfo);
 
   const [documents, setDocuments] = useState<Document[]>([
     {
@@ -128,9 +130,29 @@ const Business = () => {
     }
   ]);
 
-  const handleBusinessUpdate = (updatedInfo: BusinessInfo) => {
-    setBusinessInfo(updatedInfo);
-    toast.success("Business information updated. Changes will be reviewed by our team.");
+  const handleEditToggle = () => {
+    if (isEditing) {
+      setEditedBusinessInfo(businessInfo);
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = () => {
+    setBusinessInfo(editedBusinessInfo);
+    setIsEditing(false);
+    toast.success("Business information updated successfully");
+  };
+
+  const handleCancel = () => {
+    setEditedBusinessInfo(businessInfo);
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (field: keyof BusinessInfo, value: string) => {
+    setEditedBusinessInfo(prev => ({
+      ...prev,
+      [field]: value
+    }));
   };
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -179,64 +201,222 @@ const Business = () => {
             Manage your business information and documents
           </p>
         </div>
-        <EditBusinessForm 
-          businessInfo={businessInfo}
-          onSave={handleBusinessUpdate}
-        />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Business Information</CardTitle>
-            <CardDescription>Your company details and registration info</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Building className="h-4 w-4 text-gray-500" />
-              <span className="font-medium">{businessInfo.name}</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
-              <span className="text-sm">{businessInfo.address}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="h-4 w-4 text-gray-500" />
-              <span>{businessInfo.phone}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Mail className="h-4 w-4 text-gray-500" />
-              <span>{businessInfo.email}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Globe className="h-4 w-4 text-gray-500" />
-              <span className="text-sm">{businessInfo.website}</span>
-            </div>
-            <Separator />
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-500">Registration Number:</span>
-                <span className="font-medium">{businessInfo.registrationNumber}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Registration Type:</span>
-                <span>{businessInfo.registrationType}</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Business Size:</span>
-                <span>{businessInfo.size}</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Enhanced Approval Status */}
+        {/* Enhanced Approval Status - Left Side */}
         <ApprovalStatus
           currentStage={businessInfo.approvalStatus}
           submissionDate={businessInfo.createdDate}
           reviewDate="2024-07-04 09:30:00"
           approvalDate={businessInfo.approvalStatus === "APPROVED" ? businessInfo.lastModifiedDate : undefined}
         />
+
+        {/* Business Information - Right Side with Editable Fields */}
+        <Card>
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <div>
+                <CardTitle>Business Information</CardTitle>
+                <CardDescription>Your company details and registration info</CardDescription>
+              </div>
+              <div className="flex gap-2">
+                {isEditing ? (
+                  <>
+                    <Button variant="outline" size="sm" onClick={handleCancel}>
+                      <X className="h-4 w-4 mr-2" />
+                      Cancel
+                    </Button>
+                    <Button size="sm" onClick={handleSave}>
+                      <Save className="h-4 w-4 mr-2" />
+                      Save
+                    </Button>
+                  </>
+                ) : (
+                  <Button variant="outline" size="sm" onClick={handleEditToggle}>
+                    <Edit2 className="h-4 w-4 mr-2" />
+                    Edit
+                  </Button>
+                )}
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid grid-cols-3 gap-4 items-center">
+              <div className="flex items-center gap-2">
+                <Building className="h-4 w-4 text-gray-500" />
+                {isEditing ? (
+                  <Input
+                    value={editedBusinessInfo.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="text-sm"
+                  />
+                ) : (
+                  <span className="font-medium text-sm">{businessInfo.name}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500">Business Name</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-start">
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-gray-500 mt-0.5" />
+                {isEditing ? (
+                  <Textarea
+                    value={editedBusinessInfo.address}
+                    onChange={(e) => handleInputChange('address', e.target.value)}
+                    className="text-sm min-h-[60px]"
+                    rows={3}
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.address}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500 mt-0.5">Business Address</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-center">
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 text-gray-500" />
+                {isEditing ? (
+                  <Input
+                    value={editedBusinessInfo.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className="text-sm"
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.phone}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500">Phone Number</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-center">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-gray-500" />
+                {isEditing ? (
+                  <Input
+                    value={editedBusinessInfo.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="text-sm"
+                    type="email"
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.email}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500">Business Email</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-center">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-gray-500" />
+                {isEditing ? (
+                  <Input
+                    value={editedBusinessInfo.website}
+                    onChange={(e) => handleInputChange('website', e.target.value)}
+                    className="text-sm"
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.website}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500">Website</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-center">
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 text-gray-500" />
+                {isEditing ? (
+                  <Input
+                    value={editedBusinessInfo.supportEmail}
+                    onChange={(e) => handleInputChange('supportEmail', e.target.value)}
+                    className="text-sm"
+                    type="email"
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.supportEmail}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500">Support Email</Label>
+            </div>
+
+            <div className="grid grid-cols-3 gap-4 items-start">
+              <div className="col-span-1">
+                {isEditing ? (
+                  <Textarea
+                    value={editedBusinessInfo.description}
+                    onChange={(e) => handleInputChange('description', e.target.value)}
+                    className="text-sm min-h-[60px]"
+                    rows={3}
+                  />
+                ) : (
+                  <span className="text-sm">{businessInfo.description}</span>
+                )}
+              </div>
+              <div></div>
+              <Label className="text-right text-sm text-gray-500 mt-0.5">Description</Label>
+            </div>
+
+            <Separator />
+            
+            <div className="space-y-3">
+              <div className="grid grid-cols-3 gap-4 items-center">
+                <div>
+                  {isEditing ? (
+                    <Input
+                      value={editedBusinessInfo.registrationNumber}
+                      onChange={(e) => handleInputChange('registrationNumber', e.target.value)}
+                      className="text-sm"
+                    />
+                  ) : (
+                    <span className="font-medium text-sm">{businessInfo.registrationNumber}</span>
+                  )}
+                </div>
+                <div></div>
+                <Label className="text-right text-sm text-gray-500">Registration Number</Label>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 items-center">
+                <div>
+                  {isEditing ? (
+                    <Input
+                      value={editedBusinessInfo.registrationType}
+                      onChange={(e) => handleInputChange('registrationType', e.target.value)}
+                      className="text-sm"
+                    />
+                  ) : (
+                    <span className="text-sm">{businessInfo.registrationType}</span>
+                  )}
+                </div>
+                <div></div>
+                <Label className="text-right text-sm text-gray-500">Registration Type</Label>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 items-center">
+                <div>
+                  {isEditing ? (
+                    <Input
+                      value={editedBusinessInfo.size}
+                      onChange={(e) => handleInputChange('size', e.target.value)}
+                      className="text-sm"
+                    />
+                  ) : (
+                    <span className="text-sm">{businessInfo.size}</span>
+                  )}
+                </div>
+                <div></div>
+                <Label className="text-right text-sm text-gray-500">Business Size</Label>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Enhanced Company Documents */}
