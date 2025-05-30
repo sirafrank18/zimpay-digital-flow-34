@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -17,6 +18,9 @@ import Fees from "./pages/dashboard/payments/Fees";
 import Applications from "./pages/dashboard/Applications";
 import Business from "./pages/dashboard/Business";
 import Users from "./pages/dashboard/Users";
+import AccountSettings from "./pages/dashboard/AccountSettings";
+import UserManager from "./pages/dashboard/UserManager";
+import UserGroups from "./pages/dashboard/UserGroups";
 import Sandbox from "./pages/dashboard/sandbox/Sandbox";
 import SandboxPayments from "./pages/dashboard/sandbox/SandboxPayments";
 import SandboxTransactions from "./pages/dashboard/sandbox/SandboxTransactions";

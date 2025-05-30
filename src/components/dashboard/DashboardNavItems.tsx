@@ -7,6 +7,7 @@ import {
   Settings,
   Layers,
   Users,
+  Shield,
 } from "lucide-react";
 
 export type MenuItem = {
@@ -52,7 +53,11 @@ export const mainNavItems: MenuItem[] = [
   {
     title: "User Manager",
     icon: <Users className="h-5 w-5" />,
-    href: "/dashboard/users",
+    href: "/dashboard/user-manager",
+    children: [
+      { title: "Manage Users", href: "/dashboard/users" },
+      { title: "User Groups", href: "/dashboard/user-groups" },
+    ],
   },
   {
     title: "Sandbox",
