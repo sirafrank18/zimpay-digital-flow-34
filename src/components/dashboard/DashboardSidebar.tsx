@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 import { X, LogOut, ChevronDown, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import SimpleThanosEffect from "@/components/effects/SimpleThanosEffect";
 import { MenuItem, mainNavItems } from "./DashboardNavItems";
 
 interface DashboardSidebarProps {
@@ -22,9 +21,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
   closeSidebar,
   expandedItems,
   toggleExpand,
-  isDisintegrating,
-  handleLogout,
-  completeLogout
+  handleLogout
 }) => {
   const location = useLocation();
 
@@ -130,16 +127,14 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
                 <div className="text-xs text-gray-500 dark:text-gray-400">Admin</div>
               </div>
             </div>
-            <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout}>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
-                onClick={handleLogout}
-              >
-                <LogOut className="h-4 w-4" />
-              </Button>
-            </SimpleThanosEffect>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+              onClick={handleLogout}
+            >
+              <LogOut className="h-4 w-4" />
+            </Button>
           </div>
         </div>
       </aside>
