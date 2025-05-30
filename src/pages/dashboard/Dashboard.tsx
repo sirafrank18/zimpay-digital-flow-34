@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   ArrowUp,
@@ -24,12 +23,6 @@ const Dashboard = () => {
           <p className="text-gray-500 dark:text-gray-400">
             Welcome back, Zimbabwe Payments
           </p>
-        </div>
-        <div className="flex space-x-2 mt-4 md:mt-0">
-          <Button variant="outline">Export</Button>
-          <Button className="bg-brand-orange hover:bg-brand-orange/90 text-white">
-            New Transaction
-          </Button>
         </div>
       </div>
 
