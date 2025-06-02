@@ -34,6 +34,11 @@ import Onboarding from "./pages/onboarding/Onboarding";
 // Super Admin Pages
 import SuperAdminLayout from "./pages/super-admin/SuperAdminLayout";
 import SuperAdminDashboard from "./pages/super-admin/SuperAdminDashboard";
+import Merchants from "./pages/super-admin/Merchants";
+import PendingMerchants from "./pages/super-admin/PendingMerchants";
+import UsersManagement from "./pages/super-admin/UsersManagement";
+import PaymentMethods from "./pages/super-admin/PaymentMethods";
+import Analytics from "./pages/super-admin/Analytics";
 
 const queryClient = new QueryClient();
 
@@ -88,17 +93,16 @@ const App = () => (
             {/* Super Admin Routes */}
             <Route path="/super-admin" element={<SuperAdminLayout />}>
               <Route index element={<SuperAdminDashboard />} />
-              {/* Add other super admin routes here */}
-              <Route path="merchants" element={<div>Merchants Page</div>} />
-              <Route path="merchants/pending" element={<div>Pending Merchants</div>} />
-              <Route path="users" element={<div>Users Management</div>} />
+              <Route path="merchants" element={<Merchants />} />
+              <Route path="merchants/pending" element={<PendingMerchants />} />
+              <Route path="users" element={<UsersManagement />} />
               <Route path="users/admins" element={<div>Admin Users</div>} />
-              <Route path="payments/methods" element={<div>Payment Methods</div>} />
+              <Route path="payments/methods" element={<PaymentMethods />} />
               <Route path="payments/fees" element={<div>Fee Structure</div>} />
               <Route path="payments/transactions" element={<div>Transactions</div>} />
               <Route path="reports/financial" element={<div>Financial Reports</div>} />
               <Route path="reports/transaction" element={<div>Transaction Reports</div>} />
-              <Route path="analytics" element={<div>Analytics</div>} />
+              <Route path="analytics" element={<Analytics />} />
               <Route path="security/logs" element={<div>Activity Logs</div>} />
               <Route path="security/permissions" element={<div>Permissions</div>} />
               <Route path="settings" element={<div>System Settings</div>} />
