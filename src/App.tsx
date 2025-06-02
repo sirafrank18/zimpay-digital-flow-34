@@ -40,7 +40,7 @@ import UsersManagement from "./pages/super-admin/UsersManagement";
 import AdminUsers from "./pages/super-admin/AdminUsers";
 import PaymentMethods from "./pages/super-admin/PaymentMethods";
 import FeeStructure from "./pages/super-admin/FeeStructure";
-import Transactions from "./pages/super-admin/Transactions";
+import SuperAdminTransactions from "./pages/super-admin/Transactions";
 import FinancialReports from "./pages/super-admin/FinancialReports";
 import TransactionReports from "./pages/super-admin/TransactionReports";
 import Analytics from "./pages/super-admin/Analytics";
@@ -107,7 +107,7 @@ const App = () => (
               <Route path="users/admins" element={<AdminUsers />} />
               <Route path="payments/methods" element={<PaymentMethods />} />
               <Route path="payments/fees" element={<FeeStructure />} />
-              <Route path="payments/transactions" element={<Transactions />} />
+              <Route path="payments/transactions" element={<SuperAdminTransactions />} />
               <Route path="reports/financial" element={<FinancialReports />} />
               <Route path="reports/transaction" element={<TransactionReports />} />
               <Route path="analytics" element={<Analytics />} />
