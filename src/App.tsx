@@ -37,8 +37,16 @@ import SuperAdminDashboard from "./pages/super-admin/SuperAdminDashboard";
 import Merchants from "./pages/super-admin/Merchants";
 import PendingMerchants from "./pages/super-admin/PendingMerchants";
 import UsersManagement from "./pages/super-admin/UsersManagement";
+import AdminUsers from "./pages/super-admin/AdminUsers";
 import PaymentMethods from "./pages/super-admin/PaymentMethods";
+import FeeStructure from "./pages/super-admin/FeeStructure";
+import Transactions from "./pages/super-admin/Transactions";
+import FinancialReports from "./pages/super-admin/FinancialReports";
+import TransactionReports from "./pages/super-admin/TransactionReports";
 import Analytics from "./pages/super-admin/Analytics";
+import ActivityLogs from "./pages/super-admin/ActivityLogs";
+import Permissions from "./pages/super-admin/Permissions";
+import SystemSettings from "./pages/super-admin/SystemSettings";
 
 const queryClient = new QueryClient();
 
@@ -96,16 +104,16 @@ const App = () => (
               <Route path="merchants" element={<Merchants />} />
               <Route path="merchants/pending" element={<PendingMerchants />} />
               <Route path="users" element={<UsersManagement />} />
-              <Route path="users/admins" element={<div>Admin Users</div>} />
+              <Route path="users/admins" element={<AdminUsers />} />
               <Route path="payments/methods" element={<PaymentMethods />} />
-              <Route path="payments/fees" element={<div>Fee Structure</div>} />
-              <Route path="payments/transactions" element={<div>Transactions</div>} />
-              <Route path="reports/financial" element={<div>Financial Reports</div>} />
-              <Route path="reports/transaction" element={<div>Transaction Reports</div>} />
+              <Route path="payments/fees" element={<FeeStructure />} />
+              <Route path="payments/transactions" element={<Transactions />} />
+              <Route path="reports/financial" element={<FinancialReports />} />
+              <Route path="reports/transaction" element={<TransactionReports />} />
               <Route path="analytics" element={<Analytics />} />
-              <Route path="security/logs" element={<div>Activity Logs</div>} />
-              <Route path="security/permissions" element={<div>Permissions</div>} />
-              <Route path="settings" element={<div>System Settings</div>} />
+              <Route path="security/logs" element={<ActivityLogs />} />
+              <Route path="security/permissions" element={<Permissions />} />
+              <Route path="settings" element={<SystemSettings />} />
             </Route>
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
