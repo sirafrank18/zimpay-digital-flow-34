@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { 
   DollarSign, 
   Users, 
@@ -8,13 +8,26 @@ import {
   Heart,
   Star,
   Gift,
-  Calendar
+  Calendar,
+  Plus,
+  BarChart2,
+  Share2
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const CreatorDashboard = () => {
+  const navigate = useNavigate();
+  const [showCreateDialog, setShowCreateDialog] = useState(false);
+
   const stats = {
     totalEarnings: 2450.75,
     supporters: 89,
@@ -35,13 +48,42 @@ const CreatorDashboard = () => {
     { name: "Monthly Tip", earnings: 520.25, supporters: 28 },
   ];
 
+  const handleCreateTipLink = () => {
+    setShowCreateDialog(false);
+    toast.success("Creator tip link created successfully!");
+  };
+
+  const handleManageLinks = () => {
+    navigate("/dashboard/payments/links");
+  };
+
+  const handleViewProfile = () => {
+    navigate("/dashboard/creator/profile");
+  };
+
+  const handleViewAnalytics = () => {
+    toast.info("Analytics feature coming soon!");
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold dark:text-white text-gray-900">Creator Dashboard</h1>
-        <p className="text-gray-500 dark:text-gray-400">
-          Track your earnings and supporter engagement
-        </p>
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+        <div>
+          <h1 className="text-2xl font-bold dark:text-white text-gray-900">Creator Dashboard</h1>
+          <p className="text-gray-500 dark:text-gray-400">
+            Track your earnings and supporter engagement
+          </p>
+        </div>
+        <div className="flex gap-2 mt-4 md:mt-0">
+          <Button variant="outline" onClick={handleViewProfile}>
+            <Users className="h-4 w-4 mr-2" />
+            Manage Profile
+          </Button>
+          <Button onClick={handleViewAnalytics}>
+            <BarChart2 className="h-4 w-4 mr-2" />
+            View Analytics
+          </Button>
+        </div>
       </div>
 
       {/* Stats Cards */}
@@ -121,7 +163,7 @@ const CreatorDashboard = () => {
                 </div>
               ))}
             </div>
-            <Button variant="outline" className="w-full mt-4">
+            <Button variant="outline" className="w-full mt-4" onClick={() => toast.info("Support history coming soon!")}>
               View All Support
             </Button>
           </CardContent>
@@ -151,7 +193,7 @@ const CreatorDashboard = () => {
                 </div>
               ))}
             </div>
-            <Button variant="outline" className="w-full mt-4">
+            <Button variant="outline" className="w-full mt-4" onClick={handleManageLinks}>
               Manage All Links
             </Button>
           </CardContent>
@@ -165,17 +207,56 @@ const CreatorDashboard = () => {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <Button className="h-auto flex-col p-6 bg-brand-orange hover:bg-brand-orange/90 text-white">
-              <Gift className="h-8 w-8 mb-2" />
-              <span className="font-medium">Create Tip Link</span>
-              <span className="text-xs opacity-90">Let supporters tip you</span>
-            </Button>
-            <Button variant="outline" className="h-auto flex-col p-6">
+            <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+              <DialogTrigger asChild>
+                <Button className="h-auto flex-col p-6 bg-brand-orange hover:bg-brand-orange/90 text-white">
+                  <Gift className="h-8 w-8 mb-2" />
+                  <span className="font-medium">Create Tip Link</span>
+                  <span className="text-xs opacity-90">Let supporters tip you</span>
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Create Tip Link</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="tip-title">Tip Link Title</Label>
+                    <Input id="tip-title" placeholder="e.g. Buy me a coffee" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="tip-description">Description</Label>
+                    <Textarea id="tip-description" placeholder="Tell supporters what their tips will help with" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Suggested Amount</Label>
+                    <Select>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select default amount" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="5">$5</SelectItem>
+                        <SelectItem value="10">$10</SelectItem>
+                        <SelectItem value="25">$25</SelectItem>
+                        <SelectItem value="custom">Custom amount</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button className="w-full" onClick={handleCreateTipLink}>
+                    <Plus className="h-4 w-4 mr-2" />
+                    Create Tip Link
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            <Button variant="outline" className="h-auto flex-col p-6" onClick={() => toast.info("Content scheduling coming soon!")}>
               <Calendar className="h-8 w-8 mb-2" />
               <span className="font-medium">Schedule Content</span>
               <span className="text-xs text-gray-500">Plan your releases</span>
             </Button>
-            <Button variant="outline" className="h-auto flex-col p-6">
+
+            <Button variant="outline" className="h-auto flex-col p-6" onClick={() => toast.info("Supporter engagement tools coming soon!")}>
               <Users className="h-8 w-8 mb-2" />
               <span className="font-medium">Engage Supporters</span>
               <span className="text-xs text-gray-500">Send thank you messages</span>

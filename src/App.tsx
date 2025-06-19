@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -23,6 +24,10 @@ import UserGroups from "./pages/dashboard/UserGroups";
 import Sandbox from "./pages/dashboard/sandbox/Sandbox";
 import SandboxPayments from "./pages/dashboard/sandbox/SandboxPayments";
 import SandboxTransactions from "./pages/dashboard/sandbox/SandboxTransactions";
+
+// Creator Pages
+import CreatorDashboard from "./pages/dashboard/creators/CreatorDashboard";
+import CreatorProfile from "./pages/dashboard/creators/CreatorProfile";
 
 // Auth Pages
 import AuthLayout from "./pages/auth/AuthLayout";
@@ -80,6 +85,12 @@ const App = () => (
               <Route index element={<Dashboard />} />
               <Route path="reports" element={<Reports />} />
               
+              {/* Creator Routes */}
+              <Route path="creator">
+                <Route index element={<CreatorDashboard />} />
+                <Route path="profile" element={<CreatorProfile />} />
+              </Route>
+              
               {/* Payments Routes */}
               <Route path="payments">
                 <Route index element={<Navigate to="/dashboard/payments/transactions" replace />} />
@@ -94,6 +105,8 @@ const App = () => (
               <Route path="applications" element={<Applications />} />
               <Route path="business" element={<Business />} />
               <Route path="users" element={<Users />} />
+              <Route path="user-manager" element={<UserManager />} />
+              <Route path="user-groups" element={<UserGroups />} />
               
               {/* Sandbox Routes */}
               <Route path="sandbox">
