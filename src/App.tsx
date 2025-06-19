@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -48,6 +47,8 @@ import ActivityLogs from "./pages/super-admin/ActivityLogs";
 import Permissions from "./pages/super-admin/Permissions";
 import SystemSettings from "./pages/super-admin/SystemSettings";
 
+import CreatorPayment from "./pages/creators/CreatorPayment";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -59,6 +60,10 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+            
+            {/* Public Creator Payment Routes */}
+            <Route path="/creator/:creatorId/pay/:linkId" element={<CreatorPayment />} />
+            <Route path="/pay/:linkId" element={<CreatorPayment />} />
             
             {/* Auth Routes */}
             <Route path="/auth" element={<AuthLayout />}>

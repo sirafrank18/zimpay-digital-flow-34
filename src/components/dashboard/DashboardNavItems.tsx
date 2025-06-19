@@ -8,6 +8,8 @@ import {
   Layers,
   Users,
   Shield,
+  Heart,
+  Star,
 } from "lucide-react";
 
 export type MenuItem = {
@@ -22,6 +24,15 @@ export const mainNavItems: MenuItem[] = [
     title: "Dashboard",
     icon: <Home className="h-5 w-5" />,
     href: "/dashboard",
+  },
+  {
+    title: "Creator Hub",
+    icon: <Star className="h-5 w-5" />,
+    href: "/dashboard/creator",
+    children: [
+      { title: "Creator Dashboard", href: "/dashboard/creator" },
+      { title: "Creator Profile", href: "/dashboard/creator/profile" },
+    ],
   },
   {
     title: "Applications",

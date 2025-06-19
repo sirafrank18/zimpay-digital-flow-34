@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { 
   Link, 
@@ -14,7 +13,11 @@ import {
   ChevronDown,
   Clock,
   CheckCircle2,
-  Link as LinkIcon
+  Link as LinkIcon,
+  Heart,
+  Coffee,
+  Gift,
+  Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -135,6 +138,36 @@ const paymentLinks = [
     paymentsMade: 8,
     totalCollected: 600.00,
     expiresAt: null
+  },
+  {
+    id: "link-6",
+    name: "Buy Me a Coffee",
+    description: "Support my creative work with a coffee!",
+    amount: null,
+    currency: "USD",
+    url: "https://paid.co.zw/pay/coffee",
+    createdAt: "2023-05-15T08:30:00Z",
+    status: "active",
+    paymentsMade: 156,
+    totalCollected: 1840.00,
+    expiresAt: null,
+    isCreatorLink: true,
+    linkType: "tip"
+  },
+  {
+    id: "link-7",
+    name: "Support My Art Journey",
+    description: "Help me continue creating amazing digital art",
+    amount: 25.00,
+    currency: "USD",
+    url: "https://paid.co.zw/pay/art-support",
+    createdAt: "2023-05-16T12:00:00Z",
+    status: "active",
+    paymentsMade: 89,
+    totalCollected: 2225.00,
+    expiresAt: null,
+    isCreatorLink: true,
+    linkType: "support"
   }
 ];
 
@@ -144,11 +177,13 @@ const PaymentLinks = () => {
   const [selectedLink, setSelectedLink] = useState<any>(null);
   const [showQRDialog, setShowQRDialog] = useState(false);
   const [showUSSDDialog, setShowUSSDDialog] = useState(false);
+  const [showCreatorDialog, setShowCreatorDialog] = useState(false);
 
   const filteredLinks = paymentLinks.filter(link => {
     if (activeTab === "active" && link.status !== "active") return false;
     if (activeTab === "inactive" && link.status !== "inactive") return false;
     if (activeTab === "expired" && link.status !== "expired") return false;
+    if (activeTab === "creator" && !link.isCreatorLink) return false;
     
     if (searchTerm) {
       const searchLower = searchTerm.toLowerCase();
@@ -181,6 +216,12 @@ const PaymentLinks = () => {
     setShowUSSDDialog(true);
   };
 
+  const getLinkIcon = (link: any) => {
+    if (link.linkType === "tip") return <Coffee className="h-4 w-4 text-amber-500" />;
+    if (link.linkType === "support") return <Heart className="h-4 w-4 text-red-500" />;
+    return <Link className="h-4 w-4" />;
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -190,93 +231,168 @@ const PaymentLinks = () => {
             Create and manage payment links, QR codes and USSD codes
           </p>
         </div>
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button 
-              className="mt-4 md:mt-0 bg-brand-orange hover:bg-brand-orange/90 text-white flex items-center gap-2"
-            >
-              <Plus className="h-4 w-4" />
-              Create Payment Link
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-md">
-            <DialogHeader>
-              <DialogTitle>Create Payment Link</DialogTitle>
-              <DialogDescription>
-                Create a custom link for collecting payments from your customers.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="space-y-4 py-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Link Name</Label>
-                <Input id="name" placeholder="e.g. Monthly Subscription" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="description">Description (Optional)</Label>
-                <Textarea id="description" placeholder="Describe what this payment is for" />
-              </div>
-              <div className="grid grid-cols-2 gap-4">
+        <div className="flex gap-2 mt-4 md:mt-0">
+          <Dialog open={showCreatorDialog} onOpenChange={setShowCreatorDialog}>
+            <DialogTrigger asChild>
+              <Button 
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <Heart className="h-4 w-4" />
+                Creator Link
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Create Creator Support Link</DialogTitle>
+                <DialogDescription>
+                  Create a special link for supporters to fund your creative work.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
                 <div className="space-y-2">
-                  <Label htmlFor="amount">Amount</Label>
-                  <div className="relative">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
-                    <Input id="amount" type="number" className="pl-7" placeholder="0.00" />
+                  <Label>Link Type</Label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button variant="outline" className="h-auto flex-col p-4">
+                      <Coffee className="h-6 w-6 mb-2 text-amber-500" />
+                      <span>Buy Me a Coffee</span>
+                      <span className="text-xs text-gray-500">Tips & donations</span>
+                    </Button>
+                    <Button variant="outline" className="h-auto flex-col p-4">
+                      <Gift className="h-6 w-6 mb-2 text-purple-500" />
+                      <span>Support My Work</span>
+                      <span className="text-xs text-gray-500">Project funding</span>
+                    </Button>
                   </div>
                 </div>
+                
                 <div className="space-y-2">
-                  <Label htmlFor="currency">Currency</Label>
-                  <Select defaultValue="USD">
-                    <SelectTrigger id="currency">
-                      <SelectValue placeholder="Select currency" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="USD">USD</SelectItem>
-                      <SelectItem value="ZWL">ZWL</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="creator-name">Support Link Title</Label>
+                  <Input id="creator-name" placeholder="e.g. Support My Art Journey" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="creator-description">Description</Label>
+                  <Textarea id="creator-description" placeholder="Tell supporters what their contributions will help with" />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label>Suggested Amounts</Label>
+                  <div className="grid grid-cols-4 gap-2">
+                    {[5, 10, 25, 50].map((amount) => (
+                      <Input key={amount} value={`$${amount}`} className="text-center" />
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="expiry">Set Expiry Date</Label>
-                  <Switch id="has-expiry" />
-                </div>
-                <Input id="expiry" type="date" disabled />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="custom-url">Custom Link Path (Optional)</Label>
-                <div className="flex items-center space-x-2">
-                  <span className="text-gray-500 text-sm">paid.co.zw/pay/</span>
-                  <Input id="custom-url" placeholder="my-payment" className="flex-1" />
-                </div>
-              </div>
-            </div>
-            <DialogFooter className="sm:justify-between">
-              <Button 
-                variant="ghost"
-                onClick={() => toast.info("Create payment link dialog closed")}
-              >
-                Cancel
-              </Button>
-              <div className="flex gap-2">
+              <DialogFooter>
                 <Button 
-                  variant="outline"
-                  onClick={() => toast.info("Payment link would be saved as draft")}
+                  variant="ghost"
+                  onClick={() => setShowCreatorDialog(false)}
                 >
-                  Save as Draft
+                  Cancel
                 </Button>
                 <Button 
                   className="bg-brand-orange hover:bg-brand-orange/90 text-white"
                   onClick={() => {
-                    toast.success("Payment link created successfully!");
+                    setShowCreatorDialog(false);
+                    toast.success("Creator support link created successfully!");
                   }}
                 >
-                  Create Link
+                  Create Creator Link
                 </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+          
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button 
+                className="bg-brand-orange hover:bg-brand-orange/90 text-white flex items-center gap-2"
+              >
+                <Plus className="h-4 w-4" />
+                Create Payment Link
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Create Payment Link</DialogTitle>
+                <DialogDescription>
+                  Create a custom link for collecting payments from your customers.
+                </DialogDescription>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Link Name</Label>
+                  <Input id="name" placeholder="e.g. Monthly Subscription" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="description">Description (Optional)</Label>
+                  <Textarea id="description" placeholder="Describe what this payment is for" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="amount">Amount</Label>
+                    <div className="relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">$</span>
+                      <Input id="amount" type="number" className="pl-7" placeholder="0.00" />
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="currency">Currency</Label>
+                    <Select defaultValue="USD">
+                      <SelectTrigger id="currency">
+                        <SelectValue placeholder="Select currency" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="USD">USD</SelectItem>
+                        <SelectItem value="ZWL">ZWL</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="expiry">Set Expiry Date</Label>
+                    <Switch id="has-expiry" />
+                  </div>
+                  <Input id="expiry" type="date" disabled />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="custom-url">Custom Link Path (Optional)</Label>
+                  <div className="flex items-center space-x-2">
+                    <span className="text-gray-500 text-sm">paid.co.zw/pay/</span>
+                    <Input id="custom-url" placeholder="my-payment" className="flex-1" />
+                  </div>
+                </div>
               </div>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
+              <DialogFooter className="sm:justify-between">
+                <Button 
+                  variant="ghost"
+                  onClick={() => toast.info("Create payment link dialog closed")}
+                >
+                  Cancel
+                </Button>
+                <div className="flex gap-2">
+                  <Button 
+                    variant="outline"
+                    onClick={() => toast.info("Payment link would be saved as draft")}
+                  >
+                    Save as Draft
+                  </Button>
+                  <Button 
+                    className="bg-brand-orange hover:bg-brand-orange/90 text-white"
+                    onClick={() => {
+                      toast.success("Payment link created successfully!");
+                    }}
+                  >
+                    Create Link
+                  </Button>
+                </div>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
       <Card>
@@ -286,6 +402,7 @@ const PaymentLinks = () => {
               <TabsList>
                 <TabsTrigger value="all">All Links</TabsTrigger>
                 <TabsTrigger value="active">Active</TabsTrigger>
+                <TabsTrigger value="creator">Creator Links</TabsTrigger>
                 <TabsTrigger value="inactive">Inactive</TabsTrigger>
                 <TabsTrigger value="expired">Expired</TabsTrigger>
               </TabsList>
@@ -318,10 +435,20 @@ const PaymentLinks = () => {
                 filteredLinks.map((link) => (
                   <TableRow key={link.id} className="group">
                     <TableCell>
-                      <div>
-                        <div className="font-medium">{link.name}</div>
-                        <div className="text-sm text-gray-500 truncate max-w-[200px]">
-                          {link.description}
+                      <div className="flex items-center gap-2">
+                        {getLinkIcon(link)}
+                        <div>
+                          <div className="font-medium flex items-center gap-2">
+                            {link.name}
+                            {link.isCreatorLink && (
+                              <Badge variant="outline" className="text-xs bg-purple-50 text-purple-600 border-purple-200">
+                                Creator
+                              </Badge>
+                            )}
+                          </div>
+                          <div className="text-sm text-gray-500 truncate max-w-[200px]">
+                            {link.description}
+                          </div>
                         </div>
                       </div>
                     </TableCell>
@@ -471,7 +598,7 @@ const PaymentLinks = () => {
           <div className="flex flex-col items-center py-4">
             <div className="bg-white p-4 rounded-lg mb-4">
               {/* Simulated QR Code */}
-              <div className="w-64 h-64 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTEgMWgxMHYxMEgxVjF6TTIxIDFoMTB2MTBIMjFWMXpNMSAyMWgxMHYxMEgxVjIxek0xMyA1aDJ2MmgtMlY1ek0xNCA3aDR2NGgtNFY3ek0xOSA3aDF2MWgtMVY3ek0xNCA5aDJ2MmgtMlY5ek0xNyAxMWgxdjFoLTFWMTF6TTAgMTNoMnYyaC0yVjEzek0zIDE0aDF2MUgzVjE0ek01IDEzaDJ2MUg1VjEzek0xMCAxM2gxdjFoLTFWMTN6TTIyIDE0aDJ2MmgtMlYxNHpNMjUgMTNoMXYxaC0xVjEzek0yOSAxM2gxdjFoLTFWMTN6TTMxIDE0aDF2MWgtMVYxNHpNMTMgMTRoMnYyaC0yVjE0ek0xNiAxNWgxdjFoLTE2VjE1ek0xOCAxNXYyaDJWMTV6TTIwIDE2djFoMXYtMXpNMjMgMTd2LTFoMXYxek0xNCAxN2gydjJoLTJWMTd6TTE3IDE4aDF2MWgtMVYxOHpNMTkgMTl2LTFoMXYxek0yMSAxOXYtMWgxdjF6TTEzIDE5aDF2MWgtMVYxOXpNMTUgMTloMXYxaC0xVjE5ek0xMyAyMWgxdjFoLTFWMjF6TTE1IDIydjFoMnYtMXpNMTggMjJoMXYxaC0xVjIyek0yMSAyMmgxdjNoLTFWMjJ6TTE4IDIzaDF2MmgtMVYyM3pNMTQgMjRoMXYxaC0xVjI0ek0yMyAyNGgydjJoLTJWMjR6TTI3IDI0aDF2MWgtMVYyNHpNMjkgMjVoMXYxaC0xVjI1ek0yNCAyNnYxaDF2LTF6TTI2IDI2aDJ2MWgtMlYyNnpNMjEgMjZ2MWgxdjFoMXYxaC0ydi0xaC0xdi0xaDFWMjZ6TTI5IDI5di0xaDF2LTFoMXYyaC0xek0yOCAyOWgxdjJoLTF2LTF6TTI2IDMwdjFoMXYtMXpNMyA0aDR2NEgzVjR6TTI1IDRoNHY0aC00VjR6TTMgMjRoNHY0SDNWMjR6Ii8+PC9zdmc+')] bg-no-repeat bg-center"></div>
+              <div className="w-64 h-64 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHBhdGggZD0iTTEgMWgxMHYxMEgxVjF6TTIxIDFoMTB2MTBIMjFWMXpNMSAyMWgxMHYxMEgxVjIxek0xMyA1aDJ2MmgtMlY1ek0xNCA3aDR2NGgtNFY3ek0xOSA3aDF2MWgtMVY3ek0xNCA5aDJ2MmgtMlY5ek0xNyAxMWgxdjFoLTFWMTF6TTAgMTNoMnYyaC0yVjEzek0zIDE0aDF2MUgzVjE0ek0xNiAxNWgxdjFoLTE2VjE1ek0xOCAxNXYyaDJWMTV6TTIyIDE0aDF2MWgtMVYxNHpNMjUgMTNoMXYxaC0xVjEzek0yOSAxM2gxdjFoLTFWMTN6TTMxIDE0aDF2MWgtMVYxOXpNMTMgMTRoMnYyaC0yVjE0ek0xNiAxNWgxdjFoLTE2VjE1ek0xOCAxNXYyaDJWMTV6TTI2IDI2aDJ2MWgtMlYyNnpNMjEgMjZ2MWgxdjFoMXYxaC0xdi0xaC0xdi0xaDFWMjZ6TTI5IDI5di0xaDF2LTFoMXYyaC0xek0yOCAyOWgxdjJoLTF2LTF6TTI2IDMwdjFoMXYtMXpNMyA0aDR2NEgzVjR6TTI1IDRoNHY0aC00VjR6TTMgMjRoNHY0SDNWMjR6Ii8+PC9zdmc+')] bg-no-repeat bg-center"></div>
             </div>
             <div className="text-center">
               <p className="text-sm text-gray-500 mb-2">Scan this QR code to make payment</p>
