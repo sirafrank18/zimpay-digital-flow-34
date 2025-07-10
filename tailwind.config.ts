@@ -68,7 +68,7 @@ export default {
           navy: '#09091A',
           teal: '#1DBFC7',
           purple: '#AE34EB',
-          orange: '#FF5F00',
+          orange: '#AE34EB',
           white: '#FFFFFF',
         },
       },
