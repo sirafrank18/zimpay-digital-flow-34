@@ -34,7 +34,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   const completeLogout = () => {
     toast.success("Logged out successfully");
-    navigate("/");
+    navigate("/auth/login");
   };
 
   return (

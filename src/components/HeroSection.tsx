@@ -29,6 +29,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 className="bg-brand-orange hover:bg-brand-orange/90 text-white font-medium px-8"
+                onClick={() => window.location.href = '/auth/signup'}
               >
                 Create Account <ArrowRight className="ml-2 h-4 w-4" />
               </Button>

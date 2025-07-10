@@ -51,31 +51,31 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <a
               href="#features"
-              className="text-white hover:text-brand-orange transition-colors font-medium"
+              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
             >
               Features
             </a>
             <a
               href="#payments"
-              className="text-white hover:text-brand-orange transition-colors font-medium"
+              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
             >
               Payments
             </a>
             <a
               href="#demo"
-              className="text-white hover:text-brand-orange transition-colors font-medium"
+              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
             >
               Demo
             </a>
             <a
               href="#pricing"
-              className="text-white hover:text-brand-orange transition-colors font-medium"
+              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
             >
               Pricing
             </a>
             <a
               href="#testimonials"
-              className="text-white hover:text-brand-orange transition-colors font-medium"
+              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
             >
               Testimonials
             </a>
@@ -117,35 +117,35 @@ const Navbar = () => {
           <div className="px-4 py-4 space-y-4">
             <a
               href="#features"
-              className="block text-white hover:text-brand-orange py-2 font-medium"
+              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
             </a>
             <a
               href="#payments"
-              className="block text-white hover:text-brand-orange py-2 font-medium"
+              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Payments
             </a>
             <a
               href="#demo"
-              className="block text-white hover:text-brand-orange py-2 font-medium"
+              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Demo
             </a>
             <a
               href="#pricing"
-              className="block text-white hover:text-brand-orange py-2 font-medium"
+              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Pricing
             </a>
             <a
               href="#testimonials"
-              className="block text-white hover:text-brand-orange py-2 font-medium"
+              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Testimonials

@@ -132,7 +132,7 @@ const Login = () => {
                     <FormItem className="relative">
                       <div className="flex justify-between items-center">
                         <FormLabel className="text-brand-navy dark:text-white">Password</FormLabel>
-                        <Link to="/auth/forgot-password" className="text-sm text-brand-orange hover:underline">
+                        <Link to="/auth/forgot-password" className="text-sm text-brand-orange hover:underline story-link">
                           Forgot password?
                         </Link>
                       </div>
@@ -246,7 +246,7 @@ const Login = () => {
                   <Button
                     type="button"
                     variant="link"
-                    className="text-brand-orange hover:underline p-0"
+                    className="text-brand-orange hover:underline story-link p-0"
                     onClick={() => {
                       toast.success(`Resending OTP to ${email}`);
                     }}
