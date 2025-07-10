@@ -66,7 +66,9 @@ export default {
         // Brand colors
         brand: {
           navy: '#09091A',
-          orange: '#FF5F00',
+          teal: '#1DBFC7',
+          purple: '#AE34EB',
+          white: '#FFFFFF',
         },
       },
       borderRadius: {
