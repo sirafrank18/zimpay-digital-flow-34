@@ -41,9 +41,9 @@ const SuperAdminLayout = () => {
 
   return (
     <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={1000}>
-      <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-muted/30 to-accent/10">
         {/* Mobile Header */}
-        <header className="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 lg:hidden">
+        <header className="sticky top-0 z-30 bg-sidebar border-b border-sidebar-border lg:hidden">
           <div className="container mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center">
               <Button
@@ -53,8 +53,8 @@ const SuperAdminLayout = () => {
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white ml-2">
-                paid<span className="text-orange-500">.co.zw</span> <span className="text-sm font-normal text-slate-500">Admin</span>
+              <h1 className="text-xl font-bold text-sidebar-foreground ml-2">
+                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
               </h1>
             </div>
             <div className="flex items-center gap-2">
@@ -66,13 +66,13 @@ const SuperAdminLayout = () => {
         <div className="flex flex-1 overflow-hidden">
           {/* Sidebar */}
           <aside className={cn(
-            "fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
+            "fixed inset-y-0 left-0 z-40 w-64 bg-sidebar border-r border-sidebar-border transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           )}>
             {/* Sidebar Header */}
-            <div className="flex items-center justify-between h-16 px-4 border-b border-slate-200 dark:border-slate-800">
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-                paid<span className="text-orange-500">.co.zw</span> <span className="text-sm font-normal text-slate-500">Admin</span>
+            <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
+              <h1 className="text-xl font-bold text-sidebar-foreground">
+                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
               </h1>
               <Button
                 variant="ghost"
@@ -91,7 +91,7 @@ const SuperAdminLayout = () => {
                   <li key={link.path}>
                     <Link 
                       to={link.path}
-                      className="block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300"
+                      className="block px-3 py-2 rounded-md hover:bg-sidebar-accent/20 hover:text-sidebar-accent text-sidebar-foreground transition-colors"
                       onClick={() => setIsSidebarOpen(false)}
                     >
                       {link.name}
@@ -102,7 +102,7 @@ const SuperAdminLayout = () => {
             </div>
             
             {/* Sidebar Footer */}
-            <div className="border-t border-slate-200 dark:border-slate-800 p-4">
+            <div className="border-t border-sidebar-border p-4">
               <Button 
                 variant="outline" 
                 size="sm" 
@@ -126,9 +126,9 @@ const SuperAdminLayout = () => {
           {/* Main content */}
           <div className="flex-1 flex flex-col min-w-0">
             {/* Desktop Header */}
-            <header className="hidden lg:flex h-16 items-center justify-between border-b border-slate-200 dark:border-slate-800 px-6 bg-white dark:bg-slate-900">
-              <h1 className="text-xl font-bold text-slate-900 dark:text-white">
-                paid<span className="text-orange-500">.co.zw</span> <span className="text-sm font-normal text-slate-500">Admin</span>
+            <header className="hidden lg:flex h-16 items-center justify-between border-b border-sidebar-border px-6 bg-sidebar">
+              <h1 className="text-xl font-bold text-sidebar-foreground">
+                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
               </h1>
               <div className="flex items-center gap-3">
                 <ThemeToggle />

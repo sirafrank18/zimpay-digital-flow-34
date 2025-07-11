@@ -54,9 +54,10 @@ export const mainNavItems: MenuItem[] = [
     icon: <CreditCard className="h-5 w-5" />,
     href: "/dashboard/payments",
     children: [
-      { title: "Transactions", href: "/dashboard/payments/transactions" },
+      { title: "View All Transactions", href: "/dashboard/payments/transactions" },
       { title: "Invoices", href: "/dashboard/payments/invoices" },
       { title: "Payment Links", href: "/dashboard/payments/links" },
+      { title: "Creator Payment Link", href: "/dashboard/creator-payment" },
       { title: "Payouts", href: "/dashboard/payments/payouts" },
       { title: "Transaction Fees", href: "/dashboard/payments/fees" },
     ],

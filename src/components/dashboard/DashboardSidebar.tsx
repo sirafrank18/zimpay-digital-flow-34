@@ -30,15 +30,15 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
     <>
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-40 flex flex-col border-r dark:border-gray-800 border-gray-200 bg-white dark:bg-secondary w-64 transform transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
+          "fixed inset-y-0 left-0 z-40 flex flex-col border-r border-sidebar-border bg-sidebar w-64 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         {/* Sidebar Header with Close Button for Mobile */}
-        <div className="flex items-center justify-between h-16 px-4 border-b dark:border-gray-800 border-gray-200">
+        <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
           <Link to="/dashboard" className="flex items-center">
-            <span className="text-xl font-bold dark:text-white text-gray-900">
-              paid<span className="text-brand-orange">.co.zw</span>
+            <span className="text-xl font-bold text-sidebar-foreground">
+              paid<span className="text-sidebar-primary">.co.zw</span>
             </span>
           </Link>
           <Button
@@ -60,10 +60,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
                     <button
                       onClick={() => toggleExpand(item.title)}
                       className={cn(
-                        "flex items-center w-full px-2 py-2 rounded-md transition-colors",
+                        "flex items-center w-full px-2 py-2 rounded-md transition-colors text-sidebar-foreground",
                         location.pathname.startsWith(item.href)
-                          ? "bg-brand-orange/10 text-brand-orange"
-                          : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                          ? "bg-sidebar-primary/20 text-sidebar-primary"
+                          : "hover:bg-sidebar-accent/20 hover:text-sidebar-accent"
                       )}
                     >
                       {item.icon}
@@ -82,10 +82,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
                             <Link
                               to={child.href}
                               className={cn(
-                                "flex items-center px-2 py-2 text-sm rounded-md transition-colors",
+                                "flex items-center px-2 py-2 text-sm rounded-md transition-colors text-sidebar-foreground",
                                 location.pathname === child.href
-                                  ? "bg-brand-orange/10 text-brand-orange"
-                                  : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                                  ? "bg-sidebar-primary/20 text-sidebar-primary"
+                                  : "hover:bg-sidebar-accent/20 hover:text-sidebar-accent"
                               )}
                               onClick={closeSidebar}
                             >
@@ -101,10 +101,10 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
                   <Link
                     to={item.href}
                     className={cn(
-                      "flex items-center px-2 py-2 rounded-md transition-colors",
+                      "flex items-center px-2 py-2 rounded-md transition-colors text-sidebar-foreground",
                       location.pathname === item.href
-                        ? "bg-brand-orange/10 text-brand-orange"
-                        : "hover:bg-brand-orange/5 hover:text-brand-orange dark:hover:bg-brand-orange/10"
+                        ? "bg-sidebar-primary/20 text-sidebar-primary"
+                        : "hover:bg-sidebar-accent/20 hover:text-sidebar-accent"
                     )}
                     onClick={closeSidebar}
                   >
@@ -117,21 +117,21 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
           </ul>
         </nav>
 
-        <div className="p-4 border-t dark:border-gray-800 border-gray-200">
+        <div className="p-4 border-t border-sidebar-border">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <div className="h-8 w-8 rounded-full bg-brand-orange text-white flex items-center justify-center">
+              <div className="h-8 w-8 rounded-full bg-sidebar-primary text-sidebar-primary-foreground flex items-center justify-center">
                 ZP
               </div>
               <div className="ml-2">
-                <div className="font-medium dark:text-white text-gray-900">Zimbabwe Payments</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">Admin</div>
+                <div className="font-medium text-sidebar-foreground">Zimbabwe Payments</div>
+                <div className="text-xs text-sidebar-foreground/70">Admin</div>
               </div>
             </div>
             <Button
               variant="ghost"
               size="icon"
-              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+              className="text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/20"
               onClick={handleLogout}
               disabled={isDisintegrating}
               title={isDisintegrating ? "Logging out..." : "Logout"}
