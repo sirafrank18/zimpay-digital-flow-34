@@ -40,7 +40,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={1000}>
-      <div className="min-h-screen flex flex-col dark:bg-brand-navy bg-gray-50 transition-colors duration-200">
+      <div className="min-h-screen flex flex-col bg-gradient-to-br from-background via-muted/30 to-accent/10 transition-colors duration-300">
         {/* Mobile Header */}
         <DashboardMobileHeader toggleSidebar={toggleSidebar} />
         

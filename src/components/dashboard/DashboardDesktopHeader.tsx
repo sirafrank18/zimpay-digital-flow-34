@@ -1,18 +1,9 @@
 
 import React from "react";
-import { LogOut, User, Settings } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import SearchBar from "./SearchBar";
+import ProfileSection from "./ProfileSection";
 
 interface DashboardDesktopHeaderProps {
   isDisintegrating: boolean;
@@ -24,43 +15,39 @@ const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({
   isDisintegrating,
   handleLogout
 }) => {
+  const handleSearch = (query: string) => {
+    console.log("Searching for:", query);
+    // Implement search functionality here
+  };
+
   return (
-    <header className="hidden lg:flex h-16 items-center justify-between border-b dark:border-gray-800 border-gray-200 px-4 dark:bg-secondary bg-white">
-      <div className="flex items-center">
-        {/* This space is intentionally left empty to match the original layout */}
+    <header className="hidden lg:flex h-16 items-center justify-between border-b border-border/50 px-6 bg-gradient-to-r from-background via-background/95 to-background backdrop-blur-sm">
+      {/* Left section - Logo/Brand */}
+      <div className="flex items-center min-w-0">
+        <h1 className="text-xl font-bold gradient-text">
+          paid<span className="text-secondary">.co.zw</span>
+        </h1>
       </div>
-      <div className="flex items-center space-x-2">
+
+      {/* Center section - Search */}
+      <div className="flex-1 max-w-xl mx-6">
+        <SearchBar onSearch={handleSearch} />
+      </div>
+
+      {/* Right section - Actions and Profile */}
+      <div className="flex items-center space-x-3">
         <ThemeToggle />
-        <Button variant="outline" size="sm">Upgrade</Button>
-        
-        {/* Profile Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="flex items-center gap-2 h-auto p-2">
-              <Avatar className="h-8 w-8">
-                <AvatarFallback className="bg-brand-orange text-white text-sm">
-                  ZP
-                </AvatarFallback>
-              </Avatar>
-              <span className="hidden md:block font-medium">Zimbabwe Payments</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem asChild>
-              <Link to="/dashboard/account-settings" className="flex items-center">
-                <Settings className="h-4 w-4 mr-2" />
-                Account Settings
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600" disabled={isDisintegrating}>
-              <LogOut className="h-4 w-4 mr-2" />
-              {isDisintegrating ? "Logging out..." : "Logout"}
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="gradient-bg-primary text-primary-foreground border-primary/20 hover:bg-primary/90"
+        >
+          Upgrade
+        </Button>
+        <ProfileSection 
+          isDisintegrating={isDisintegrating}
+          handleLogout={handleLogout}
+        />
       </div>
     </header>
   );

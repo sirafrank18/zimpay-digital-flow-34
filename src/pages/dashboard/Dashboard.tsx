@@ -19,88 +19,88 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
         <div>
-          <h1 className="text-2xl font-bold dark:text-white text-gray-900">Dashboard</h1>
-          <p className="text-gray-500 dark:text-gray-400">
+          <h1 className="text-3xl font-bold gradient-text">Dashboard</h1>
+          <p className="text-muted-foreground mt-1">
             Welcome back, Zimbabwe Payments
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-400 text-gray-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Total Revenue
             </CardTitle>
-            <DollarSign className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            <DollarSign className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white text-gray-900">$45,231.89</div>
+            <div className="text-2xl font-bold text-foreground">$45,231.89</div>
             <div className="flex items-center pt-1 space-x-1">
               <ArrowUp className="h-4 w-4 text-green-500" />
               <span className="text-xs text-green-500">+20.1%</span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">from last month</span>
+              <span className="text-xs text-muted-foreground">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-400 text-gray-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Transactions
             </CardTitle>
-            <ArrowLeftRight className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            <ArrowLeftRight className="h-4 w-4 text-secondary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white text-gray-900">+2,350</div>
+            <div className="text-2xl font-bold text-foreground">+2,350</div>
             <div className="flex items-center pt-1 space-x-1">
               <ArrowDown className="h-4 w-4 text-red-500" />
               <span className="text-xs text-red-500">-3.2%</span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">from last month</span>
+              <span className="text-xs text-muted-foreground">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-400 text-gray-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Active Customers
             </CardTitle>
-            <Users className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            <Users className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white text-gray-900">+573</div>
+            <div className="text-2xl font-bold text-foreground">+573</div>
             <div className="flex items-center pt-1 space-x-1">
               <ArrowUp className="h-4 w-4 text-green-500" />
               <span className="text-xs text-green-500">+12.4%</span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">from last month</span>
+              <span className="text-xs text-muted-foreground">from last month</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium dark:text-gray-400 text-gray-500">
+            <CardTitle className="text-sm font-medium text-muted-foreground">
               Active Payment Links
             </CardTitle>
-            <LinkIcon className="h-4 w-4 text-gray-500 dark:text-gray-400" />
+            <LinkIcon className="h-4 w-4 text-secondary" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold dark:text-white text-gray-900">29</div>
+            <div className="text-2xl font-bold text-foreground">29</div>
             <div className="flex items-center pt-1 space-x-1">
               <ArrowUp className="h-4 w-4 text-green-500" />
               <span className="text-xs text-green-500">+7.8%</span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">from last month</span>
+              <span className="text-xs text-muted-foreground">from last month</span>
             </div>
           </CardContent>
         </Card>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Recent Transactions</CardTitle>
+              <CardTitle className="gradient-text">Recent Transactions</CardTitle>
               <Button variant="ghost" size="sm">
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -122,8 +122,8 @@ const Dashboard = () => {
                     )}
                   </div>
                   <div className="ml-3 flex-1">
-                    <div className="font-medium dark:text-white text-gray-900">{transaction.name}</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">{transaction.date}</div>
+                    <div className="font-medium text-foreground">{transaction.name}</div>
+                    <div className="text-xs text-muted-foreground">{transaction.date}</div>
                   </div>
                   <div className={`font-medium ${
                     transaction.type === "credit" 
@@ -141,10 +141,10 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="card-hover gradient-bg-subtle border-border/50">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle>Payment Methods</CardTitle>
+              <CardTitle className="gradient-text">Payment Methods</CardTitle>
               <Button variant="ghost" size="sm">
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -158,18 +158,18 @@ const Dashboard = () => {
                     {method.icon}
                   </div>
                   <div className="ml-3 flex-1">
-                    <div className="font-medium dark:text-white text-gray-900">{method.name}</div>
+                    <div className="font-medium text-foreground">{method.name}</div>
                     <div className="flex items-center">
-                      <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full w-full">
+                      <div className="h-2 bg-muted rounded-full w-full">
                         <div 
-                          className="h-full bg-brand-orange rounded-full" 
+                          className="h-full gradient-bg-primary rounded-full" 
                           style={{ width: `${method.percentage}%` }}
                         ></div>
                       </div>
-                      <span className="ml-2 text-xs text-gray-500 dark:text-gray-400">{method.percentage}%</span>
+                      <span className="ml-2 text-xs text-muted-foreground">{method.percentage}%</span>
                     </div>
                   </div>
-                  <div className="font-medium dark:text-white text-gray-900">
+                  <div className="font-medium text-foreground">
                     ${method.amount}
                   </div>
                 </div>
