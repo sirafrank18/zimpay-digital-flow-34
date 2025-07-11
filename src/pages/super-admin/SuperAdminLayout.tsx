@@ -13,6 +13,7 @@ const SuperAdminLayout = () => {
   const [isDisintegrating, setIsDisintegrating] = useState(false);
 
   const handleLogout = () => {
+    toast.info("Logging out...");
     setIsDisintegrating(true);
   };
 
@@ -39,7 +40,7 @@ const SuperAdminLayout = () => {
   ];
 
   return (
-    <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={2000}>
+    <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={1000}>
       <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950">
         {/* Mobile Header */}
         <header className="sticky top-0 z-30 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 lg:hidden">

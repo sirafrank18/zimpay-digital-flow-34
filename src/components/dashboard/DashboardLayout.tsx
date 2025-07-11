@@ -29,6 +29,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
   
   const handleLogout = () => {
+    toast.info("Logging out...");
     setIsDisintegrating(true);
   };
 
@@ -38,7 +39,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={2000}>
+    <SimpleThanosEffect active={isDisintegrating} onComplete={completeLogout} duration={1000}>
       <div className="min-h-screen flex flex-col dark:bg-brand-navy bg-gray-50 transition-colors duration-200">
         {/* Mobile Header */}
         <DashboardMobileHeader toggleSidebar={toggleSidebar} />

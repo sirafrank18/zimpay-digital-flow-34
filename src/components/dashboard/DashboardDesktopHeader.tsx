@@ -21,6 +21,7 @@ interface DashboardDesktopHeaderProps {
 }
 
 const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({ 
+  isDisintegrating,
   handleLogout
 }) => {
   return (
@@ -54,9 +55,9 @@ const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({
               </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600">
+            <DropdownMenuItem onClick={handleLogout} className="text-red-600 focus:text-red-600" disabled={isDisintegrating}>
               <LogOut className="h-4 w-4 mr-2" />
-              Logout
+              {isDisintegrating ? "Logging out..." : "Logout"}
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

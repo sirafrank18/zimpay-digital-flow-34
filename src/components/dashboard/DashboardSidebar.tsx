@@ -21,6 +21,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
   closeSidebar,
   expandedItems,
   toggleExpand,
+  isDisintegrating,
   handleLogout
 }) => {
   const location = useLocation();
@@ -132,6 +133,8 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
               size="icon"
               className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
               onClick={handleLogout}
+              disabled={isDisintegrating}
+              title={isDisintegrating ? "Logging out..." : "Logout"}
             >
               <LogOut className="h-4 w-4" />
             </Button>
