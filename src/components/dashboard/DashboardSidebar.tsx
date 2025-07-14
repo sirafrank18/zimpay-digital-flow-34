@@ -33,6 +33,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
           "fixed inset-y-0 left-0 z-40 flex flex-col border-r border-sidebar-border bg-sidebar w-64 transform transition-all duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-auto",
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         )}
+        style={{ backgroundColor: 'hsl(var(--sidebar))' }}
       >
         {/* Sidebar Header with Close Button for Mobile */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
