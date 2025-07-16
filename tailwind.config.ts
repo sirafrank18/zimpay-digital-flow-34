@@ -67,8 +67,8 @@ export default {
         brand: {
           navy: '#09091A',
           teal: '#1DBFC7',
-          purple: '#AE34EB',
-          orange: '#AE34EB',
+          primary: '#1DBFC7',
+          secondary: '#09091A',
           white: '#FFFFFF',
         },
       },

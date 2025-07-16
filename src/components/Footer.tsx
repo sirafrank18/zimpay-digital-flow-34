@@ -11,14 +11,14 @@ import { Button } from "@/components/ui/button";
 
 const Footer = () => {
   return (
-    <footer className="pt-16 pb-8 bg-brand-navy relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-orange/30 to-transparent"></div>
+    <footer className="pt-16 pb-8 bg-secondary relative overflow-hidden">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
       
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
           <div className="lg:col-span-2">
             <a href="#" className="text-2xl font-bold text-white mb-4 block">
-              paid<span className="text-brand-orange">.co.zw</span>
+              paid<span className="text-primary">.co.zw</span>
             </a>
             <p className="text-gray-400 mb-6">
               Zimbabwe's complete payment platform. Accept payments, send payouts, and manage your online business with ease.

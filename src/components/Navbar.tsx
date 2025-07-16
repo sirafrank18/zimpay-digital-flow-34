@@ -35,7 +35,7 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-brand-navy/90 dark:bg-brand-navy/90 backdrop-blur-lg shadow-lg"
+          ? "bg-secondary/90 dark:bg-secondary/90 backdrop-blur-lg shadow-lg"
           : "bg-transparent"
       }`}
     >
@@ -43,7 +43,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           <div className="flex items-center">
             <Link to="/" className="text-2xl font-bold text-white">
-              paid<span className="text-brand-orange">.co.zw</span>
+              paid<span className="text-primary">.co.zw</span>
             </Link>
           </div>
 
@@ -51,31 +51,31 @@ const Navbar = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <a
               href="#features"
-              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
+              className="text-white hover:text-primary transition-colors font-medium story-link"
             >
               Features
             </a>
             <a
               href="#payments"
-              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
+              className="text-white hover:text-primary transition-colors font-medium story-link"
             >
               Payments
             </a>
             <a
               href="#demo"
-              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
+              className="text-white hover:text-primary transition-colors font-medium story-link"
             >
               Demo
             </a>
             <a
               href="#pricing"
-              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
+              className="text-white hover:text-primary transition-colors font-medium story-link"
             >
               Pricing
             </a>
             <a
               href="#testimonials"
-              className="text-white hover:text-brand-orange transition-colors font-medium story-link"
+              className="text-white hover:text-primary transition-colors font-medium story-link"
             >
               Testimonials
             </a>
@@ -85,13 +85,13 @@ const Navbar = () => {
             <ThemeToggle className="border-gray-600 hover:bg-gray-800" />
             <Button 
               variant="outline" 
-              className="border-brand-orange text-white"
+              className="border-primary text-white"
               onClick={handleLogin}
             >
               Log in
             </Button>
             <Button
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white"
+              className="bg-primary hover:bg-primary/90 text-white"
               onClick={handleSignup}
             >
               Sign up
@@ -113,39 +113,39 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-brand-navy/95 backdrop-blur-lg">
+        <div className="md:hidden bg-secondary/95 backdrop-blur-lg">
           <div className="px-4 py-4 space-y-4">
             <a
               href="#features"
-              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
+              className="block text-white hover:text-primary py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Features
             </a>
             <a
               href="#payments"
-              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
+              className="block text-white hover:text-primary py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Payments
             </a>
             <a
               href="#demo"
-              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
+              className="block text-white hover:text-primary py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Demo
             </a>
             <a
               href="#pricing"
-              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
+              className="block text-white hover:text-primary py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Pricing
             </a>
             <a
               href="#testimonials"
-              className="block text-white hover:text-brand-orange py-2 font-medium story-link"
+              className="block text-white hover:text-primary py-2 font-medium story-link"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Testimonials
@@ -153,7 +153,7 @@ const Navbar = () => {
             <div className="flex flex-col space-y-2 pt-2">
               <Button
                 variant="outline"
-                className="border-brand-orange text-white w-full"
+                className="border-primary text-white w-full"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   navigate("/auth/login");
@@ -162,7 +162,7 @@ const Navbar = () => {
                 Log in
               </Button>
               <Button
-                className="bg-brand-orange hover:bg-brand-orange/90 text-white w-full"
+                className="bg-primary hover:bg-primary/90 text-white w-full"
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   navigate("/auth/signup");
