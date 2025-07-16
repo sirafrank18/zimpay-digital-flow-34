@@ -11,7 +11,9 @@ import {
   Calendar,
   Plus,
   BarChart2,
-  Share2
+  Share2,
+  Ticket,
+  CalendarDays
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -23,15 +25,22 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import EventCreator from "@/components/events/EventCreator";
+import EventCard from "@/components/events/EventCard";
+import { Event } from "@/types/events";
 
 const CreatorDashboard = () => {
   const navigate = useNavigate();
   const [showCreateDialog, setShowCreateDialog] = useState(false);
+  const [showEventCreator, setShowEventCreator] = useState(false);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [activeTab, setActiveTab] = useState<'overview' | 'events'>('overview');
 
   const stats = {
     totalEarnings: 2450.75,
     supporters: 89,
     activeLinks: 12,
+    activeEvents: events.filter(e => e.isActive).length,
     thisMonthGrowth: 15.2
   };
 
@@ -65,6 +74,23 @@ const CreatorDashboard = () => {
     toast.info("Analytics feature coming soon!");
   };
 
+  const handleEventCreated = (event: Event) => {
+    setEvents(prev => [...prev, event]);
+    setShowEventCreator(false);
+  };
+
+  const handleEventView = (event: Event) => {
+    window.open(`/event/${event.id}`, '_blank');
+  };
+
+  const handleEventEdit = (event: Event) => {
+    toast.info("Event editing coming soon!");
+  };
+
+  const handleEventManage = (event: Event) => {
+    toast.info("Event management coming soon!");
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
@@ -75,19 +101,30 @@ const CreatorDashboard = () => {
           </p>
         </div>
         <div className="flex gap-2 mt-4 md:mt-0">
+          <Button 
+            variant={activeTab === 'overview' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('overview')}
+          >
+            <BarChart2 className="h-4 w-4 mr-2" />
+            Overview
+          </Button>
+          <Button 
+            variant={activeTab === 'events' ? 'default' : 'outline'}
+            onClick={() => setActiveTab('events')}
+          >
+            <CalendarDays className="h-4 w-4 mr-2" />
+            Events
+          </Button>
           <Button variant="outline" onClick={handleViewProfile}>
             <Users className="h-4 w-4 mr-2" />
-            Manage Profile
-          </Button>
-          <Button onClick={handleViewAnalytics}>
-            <BarChart2 className="h-4 w-4 mr-2" />
-            View Analytics
+            Profile
           </Button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      {activeTab === 'overview' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Earnings</CardTitle>
@@ -112,12 +149,12 @@ const CreatorDashboard = () => {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Links</CardTitle>
-            <Link className="h-4 w-4 text-muted-foreground" />
+            <CardTitle className="text-sm font-medium">Active Events</CardTitle>
+            <Ticket className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">{stats.activeLinks}</div>
-            <p className="text-xs text-muted-foreground">Payment links</p>
+            <div className="text-2xl font-bold">{stats.activeEvents}</div>
+            <p className="text-xs text-muted-foreground">Live events</p>
           </CardContent>
         </Card>
 
@@ -131,9 +168,12 @@ const CreatorDashboard = () => {
             <p className="text-xs text-muted-foreground">This month</p>
           </CardContent>
         </Card>
-      </div>
+        </div>
+      )}
 
-      <div className="grid lg:grid-cols-2 gap-6">
+      {/* Content based on active tab */}
+      {activeTab === 'overview' && (
+        <div className="grid lg:grid-cols-2 gap-6">
         {/* Recent Support */}
         <Card>
           <CardHeader>
@@ -198,10 +238,74 @@ const CreatorDashboard = () => {
             </Button>
           </CardContent>
         </Card>
-      </div>
+        </div>
+      )}
 
-      {/* Quick Actions */}
-      <Card>
+      {/* Events Tab */}
+      {activeTab === 'events' && (
+        <div className="space-y-6">
+          {!showEventCreator ? (
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-lg font-semibold">Your Events</h2>
+                  <p className="text-muted-foreground">Create and manage your events</p>
+                </div>
+                <Button onClick={() => setShowEventCreator(true)}>
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create Event
+                </Button>
+              </div>
+              
+              {events.length === 0 ? (
+                <Card>
+                  <CardContent className="text-center py-12">
+                    <Ticket className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                    <h3 className="text-lg font-medium mb-2">No events yet</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Create your first event to start selling tickets and managing attendees.
+                    </p>
+                    <Button onClick={() => setShowEventCreator(true)}>
+                      <Plus className="h-4 w-4 mr-2" />
+                      Create Your First Event
+                    </Button>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {events.map((event) => (
+                    <EventCard
+                      key={event.id}
+                      event={event}
+                      showManagement={true}
+                      onView={handleEventView}
+                      onEdit={handleEventEdit}
+                      onManage={handleEventManage}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h2 className="text-lg font-semibold">Create New Event</h2>
+                  <p className="text-muted-foreground">Choose an event type to get started</p>
+                </div>
+                <Button variant="outline" onClick={() => setShowEventCreator(false)}>
+                  Back to Events
+                </Button>
+              </div>
+              <EventCreator onEventCreated={handleEventCreated} />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Quick Actions - Only show in overview */}
+      {activeTab === 'overview' && (
+        <Card>
         <CardHeader>
           <CardTitle>Quick Actions</CardTitle>
         </CardHeader>
@@ -250,10 +354,14 @@ const CreatorDashboard = () => {
               </DialogContent>
             </Dialog>
 
-            <Button variant="outline" className="h-auto flex-col p-6" onClick={() => toast.info("Content scheduling coming soon!")}>
+            <Button 
+              variant="outline" 
+              className="h-auto flex-col p-6" 
+              onClick={() => setShowEventCreator(true)}
+            >
               <Calendar className="h-8 w-8 mb-2" />
-              <span className="font-medium">Schedule Content</span>
-              <span className="text-xs text-gray-500">Plan your releases</span>
+              <span className="font-medium">Create Event</span>
+              <span className="text-xs text-gray-500">Start selling tickets</span>
             </Button>
 
             <Button variant="outline" className="h-auto flex-col p-6" onClick={() => toast.info("Supporter engagement tools coming soon!")}>
@@ -263,7 +371,8 @@ const CreatorDashboard = () => {
             </Button>
           </div>
         </CardContent>
-      </Card>
+        </Card>
+      )}
     </div>
   );
 };

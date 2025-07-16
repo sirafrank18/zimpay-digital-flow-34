@@ -32,6 +32,7 @@ export const mainNavItems: MenuItem[] = [
     children: [
       { title: "Creator Dashboard", href: "/dashboard/creator" },
       { title: "Creator Profile", href: "/dashboard/creator/profile" },
+      { title: "Event Management", href: "/dashboard/creator?tab=events" },
     ],
   },
   {

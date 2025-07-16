@@ -53,6 +53,7 @@ import Permissions from "./pages/super-admin/Permissions";
 import SystemSettings from "./pages/super-admin/SystemSettings";
 
 import CreatorPayment from "./pages/creators/CreatorPayment";
+import EventPage from "./pages/events/EventPage";
 
 const queryClient = new QueryClient();
 
