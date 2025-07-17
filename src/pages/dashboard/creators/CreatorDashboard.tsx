@@ -128,7 +128,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Earnings</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">${stats.totalEarnings.toFixed(2)}</div>
@@ -139,7 +139,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Supporters</CardTitle>
-            <Users className="h-4 w-4 text-muted-foreground" />
+            <Users className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.supporters}</div>
@@ -150,7 +150,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Active Events</CardTitle>
-            <Ticket className="h-4 w-4 text-muted-foreground" />
+            <Ticket className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats.activeEvents}</div>
@@ -161,7 +161,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Growth</CardTitle>
-            <TrendingUp className="h-4 w-4 text-muted-foreground" />
+            <TrendingUp className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">+{stats.thisMonthGrowth}%</div>
@@ -178,7 +178,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-red-500" />
+              <Heart className="h-5 w-5 text-primary" />
               Recent Support
             </CardTitle>
           </CardHeader>
@@ -213,7 +213,7 @@ const CreatorDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Star className="h-5 w-5 text-yellow-500" />
+              <Star className="h-5 w-5 text-primary" />
               Top Performing Links
             </CardTitle>
           </CardHeader>
@@ -313,7 +313,7 @@ const CreatorDashboard = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
               <DialogTrigger asChild>
-                <Button className="h-auto flex-col p-6 bg-brand-orange hover:bg-brand-orange/90 text-white">
+                <Button className="h-auto flex-col p-6 bg-primary hover:bg-primary/90 text-white">
                   <Gift className="h-8 w-8 mb-2" />
                   <span className="font-medium">Create Tip Link</span>
                   <span className="text-xs opacity-90">Let supporters tip you</span>

@@ -8,7 +8,7 @@ import { Progress } from "@/components/ui/progress";
 const onboardingSlides = [
   {
     id: 1,
-    title: "Welcome to paid.co.zw",
+    title: "Welcome to PAID.co.zw",
     description: "Zimbabwe's complete payment platform for businesses. Let's get you started with accepting payments."
   },
   {
@@ -34,7 +34,7 @@ const onboardingSlides = [
   {
     id: 6,
     title: "You're All Set!",
-    description: "You're ready to start using paid.co.zw. Let's explore your dashboard."
+    description: "You're ready to start using PAID.co.zw. Let's explore your dashboard."
   }
 ];
 
@@ -74,7 +74,7 @@ const Onboarding = () => {
         <div className="max-w-md mx-auto">
           <div className="mb-8">
             {currentSlide === 0 && (
-              <div className="h-32 w-32 rounded-full bg-brand-orange flex items-center justify-center text-4xl font-bold mx-auto mb-6">
+              <div className="h-32 w-32 rounded-full bg-primary flex items-center justify-center text-4xl font-bold mx-auto mb-6">
                 PZ
               </div>
             )}
@@ -124,7 +124,7 @@ const Onboarding = () => {
             )}
             
             {currentSlide === 5 && (
-              <div className="h-32 w-32 bg-brand-orange rounded-full flex items-center justify-center mx-auto mb-6">
+              <div className="h-32 w-32 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
                 <Check className="h-16 w-16" />
               </div>
             )}
@@ -158,7 +158,7 @@ const Onboarding = () => {
                 <div 
                   key={index} 
                   className={`w-2 h-2 rounded-full ${
-                    currentSlide === index ? "bg-brand-orange" : "bg-white/30"
+                    currentSlide === index ? "bg-primary" : "bg-white/30"
                   }`}
                 />
               ))}
@@ -166,7 +166,7 @@ const Onboarding = () => {
 
             <Button 
               onClick={handleNext} 
-              className="bg-brand-orange hover:bg-brand-orange/90 text-white"
+              className="bg-primary hover:bg-primary/90 text-white"
             >
               {currentSlide === onboardingSlides.length - 1 ? (
                 <>Get Started</>
