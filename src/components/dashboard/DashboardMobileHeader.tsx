@@ -20,7 +20,7 @@ const DashboardMobileHeader: React.FC<DashboardMobileHeaderProps> = ({ toggleSid
 
   return (
     <>
-      <header className="lg:hidden sticky top-0 z-30 flex items-center justify-between border-b border-border/50 px-4 h-16 bg-gradient-to-r from-background via-background/95 to-background backdrop-blur-sm">
+      <header className="lg:hidden sticky top-0 z-30 flex items-center justify-between border-b border-border px-4 h-16 bg-background">
         <div className="flex items-center">
           <Button
             variant="ghost"
@@ -48,7 +48,7 @@ const DashboardMobileHeader: React.FC<DashboardMobileHeaderProps> = ({ toggleSid
       </header>
       
       {showSearch && (
-        <div className="lg:hidden border-b border-border/50 px-4 py-3 bg-background/95 backdrop-blur-sm">
+        <div className="lg:hidden border-b border-border px-4 py-3 bg-background">
           <SearchBar onSearch={handleSearch} />
         </div>
       )}

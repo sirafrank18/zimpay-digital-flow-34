@@ -39,6 +39,7 @@ export interface Event {
   totalEarnings: number;
   createdAt: string;
   updatedAt: string;
+  ticketCategory?: 'VIP' | 'VVIP' | 'General' | 'Premium' | 'Student';
 }
 
 export interface EventRegistration {
@@ -48,6 +49,7 @@ export interface EventRegistration {
   participantEmail: string;
   participantPhone?: string;
   ticketQuantity: number;
+  ticketCategory?: 'VIP' | 'VVIP' | 'General' | 'Premium' | 'Student';
   totalAmount: number;
   paymentStatus: 'pending' | 'paid' | 'failed' | 'refunded';
   registrationDate: string;

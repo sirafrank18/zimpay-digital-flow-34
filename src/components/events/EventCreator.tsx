@@ -29,7 +29,8 @@ const EventCreator: React.FC<EventCreatorProps> = ({ onEventCreated }) => {
     price: 0,
     currency: 'USD',
     tags: [],
-    customFields: {}
+    customFields: {},
+    ticketCategory: 'General' as 'VIP' | 'VVIP' | 'General' | 'Premium' | 'Student'
   });
 
   const handleTypeSelect = (type: EventType) => {
@@ -67,7 +68,8 @@ const EventCreator: React.FC<EventCreatorProps> = ({ onEventCreated }) => {
       ticketsSold: 0,
       totalEarnings: 0,
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
+      updatedAt: new Date().toISOString(),
+      ticketCategory: eventData.ticketCategory
     };
 
     onEventCreated?.(newEvent);
@@ -83,7 +85,8 @@ const EventCreator: React.FC<EventCreatorProps> = ({ onEventCreated }) => {
       price: 0,
       currency: 'USD',
       tags: [],
-      customFields: {}
+      customFields: {},
+      ticketCategory: 'General' as 'VIP' | 'VVIP' | 'General' | 'Premium' | 'Student'
     });
     toast.success("Event created successfully!");
   };
@@ -314,6 +317,23 @@ const EventCreator: React.FC<EventCreatorProps> = ({ onEventCreated }) => {
                   </SelectContent>
                 </Select>
               </div>
+            </div>
+
+            {/* Ticket Category */}
+            <div className="space-y-2">
+              <Label htmlFor="ticketCategory">Ticket Category</Label>
+              <Select value={eventData.ticketCategory} onValueChange={(value: 'VIP' | 'VVIP' | 'General' | 'Premium' | 'Student') => setEventData(prev => ({ ...prev, ticketCategory: value }))}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select ticket category" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="General">General</SelectItem>
+                  <SelectItem value="Premium">Premium</SelectItem>
+                  <SelectItem value="VIP">VIP</SelectItem>
+                  <SelectItem value="VVIP">VVIP</SelectItem>
+                  <SelectItem value="Student">Student</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Event Type Specific Fields */}

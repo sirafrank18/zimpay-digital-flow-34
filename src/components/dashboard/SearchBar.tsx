@@ -35,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           placeholder={placeholder}
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          className="pl-10 pr-10 bg-background/50 backdrop-blur-sm border-border/50 focus:border-primary/50 transition-all duration-200"
+          className="pl-10 pr-10 bg-background border-border focus:border-primary transition-all duration-200"
         />
         {query && (
           <Button

@@ -50,7 +50,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({
             </div>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end" className="w-56 backdrop-blur-sm bg-background/95 border-border/50">
+        <DropdownMenuContent align="end" className="w-56 bg-background border-border">
           <DropdownMenuLabel>
             <div className="flex flex-col space-y-1">
               <p className="text-sm font-medium leading-none">Zimbabwe Payments</p>

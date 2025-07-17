@@ -43,11 +43,6 @@
     --input: 240 47% 15%;
     --ring: 184 87% 44%;
     
-    /* Gradient colors */
-    --gradient-primary: 184 87% 44%;
-    --gradient-secondary: 240 47% 7%;
-    --gradient-dark: 240 47% 7%;
-    
     /* Shadow colors */
     --shadow-primary: 184 87% 44%;
     --shadow-secondary: 240 47% 7%;
@@ -94,11 +89,6 @@
     --input: 240 47% 20%;
     --ring: 184 87% 44%;
     
-    /* Gradient colors */
-    --gradient-primary: 184 87% 44%;
-    --gradient-secondary: 240 47% 7%;
-    --gradient-dark: 240 47% 7%;
-    
     /* Shadow colors */
     --shadow-primary: 184 87% 44%;
     --shadow-secondary: 240 47% 7%;
@@ -118,21 +108,9 @@
     @apply bg-background text-foreground transition-colors duration-300;
   }
   
-  /* Beautiful gradient utilities */
+  /* Remove gradients - use solid colors only */
   .gradient-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-primary;
-  }
-  
-  .gradient-bg-primary {
-    background: linear-gradient(135deg, hsl(var(--gradient-primary)), hsl(var(--gradient-secondary)));
-  }
-  
-  .gradient-bg-subtle {
-    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
-  }
-  
-  .gradient-border {
-    border-image: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary))) 1;
+    @apply text-primary;
   }
   
   .card-hover {
@@ -159,9 +137,8 @@
   }
   
   .glass-effect {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
   }
   
   .geo-pattern {

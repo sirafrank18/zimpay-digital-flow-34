@@ -21,7 +21,7 @@ const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({
   };
 
   return (
-    <header className="hidden lg:flex h-16 items-center justify-between border-b border-border/50 px-6 bg-gradient-to-r from-background via-background/95 to-background backdrop-blur-sm">
+    <header className="hidden lg:flex h-16 items-center justify-between border-b border-border px-6 bg-background">
       {/* Left section - Logo/Brand */}
       <div className="flex items-center min-w-0">
         <h1 className="text-xl font-bold gradient-text">
