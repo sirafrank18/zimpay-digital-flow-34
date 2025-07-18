@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
           <div className="lg:col-span-2">
             <a href="#" className="text-2xl font-bold text-foreground mb-4 block">
-              <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
+              paid<span className="text-primary">.co.zw</span>
             </a>
             <p className="text-gray-400 mb-6">
               Zimbabwe's complete payment platform. Accept payments, send payouts, and manage your online business with ease.
