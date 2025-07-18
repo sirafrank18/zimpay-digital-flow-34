@@ -31,7 +31,7 @@ const DashboardMobileHeader: React.FC<DashboardMobileHeaderProps> = ({ toggleSid
           </Button>
           <Link to="/dashboard" className="ml-2">
             <span className="text-xl font-bold">
-              <span className="text-white">PAID</span><span className="text-primary">.co.zw</span>
+              <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
             </span>
           </Link>
         </div>

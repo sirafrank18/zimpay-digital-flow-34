@@ -25,7 +25,7 @@ const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({
       {/* Left section - Logo/Brand */}
       <div className="flex items-center min-w-0">
         <h1 className="text-xl font-bold">
-          <span className="text-white">PAID</span><span className="text-primary">.co.zw</span>
+          <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
         </h1>
       </div>
 

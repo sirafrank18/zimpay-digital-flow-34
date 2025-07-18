@@ -17,8 +17,8 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-16">
           <div className="lg:col-span-2">
-            <a href="#" className="text-2xl font-bold text-white mb-4 block">
-              PAID<span className="text-primary">.co.zw</span>
+            <a href="#" className="text-2xl font-bold text-foreground mb-4 block">
+              <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
             </a>
             <p className="text-gray-400 mb-6">
               Zimbabwe's complete payment platform. Accept payments, send payouts, and manage your online business with ease.
@@ -26,7 +26,7 @@ const Footer = () => {
             <div className="flex flex-col space-y-2">
               <a href="mailto:info@paid.co.zw" className="flex items-center text-gray-300 hover:text-primary transition-colors">
                 <Mail className="w-4 h-4 mr-2" />
-                info@PAID.co.zw
+                info@paid.co.zw
               </a>
               <a href="tel:+263242123456" className="flex items-center text-gray-300 hover:text-brand-orange transition-colors">
                 <Phone className="w-4 h-4 mr-2" />
@@ -99,7 +99,7 @@ const Footer = () => {
         
         <div className="border-t border-gray-800 pt-6 flex flex-col md:flex-row items-center justify-between">
           <div className="text-gray-500 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} PAID.co.zw All rights reserved.
+            © {new Date().getFullYear()} paid.co.zw All rights reserved.
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-500">

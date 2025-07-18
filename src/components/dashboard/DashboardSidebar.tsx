@@ -38,7 +38,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
           <Link to="/dashboard" className="flex items-center">
             <span className="text-xl font-bold">
-              <span className="text-white">PAID</span><span className="text-primary">.co.zw</span>
+              <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
             </span>
           </Link>
           <Button

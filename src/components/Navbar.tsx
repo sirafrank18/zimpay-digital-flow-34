@@ -42,8 +42,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-white">
-              PAID<span className="text-primary">.co.zw</span>
+            <Link to="/" className="text-2xl font-bold">
+              <span className="text-foreground">paid</span><span className="text-primary">.co.zw</span>
             </Link>
           </div>
 
