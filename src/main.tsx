@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // Add scroll event listener
   window.addEventListener('scroll', animateOnScroll);
+  
+  // Add padding to body to account for fixed footer
+  document.body.style.paddingBottom = '48px';
 });
 
 createRoot(document.getElementById("root")!).render(<App />);
