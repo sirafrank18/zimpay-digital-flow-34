@@ -30,8 +30,8 @@ const DashboardMobileHeader: React.FC<DashboardMobileHeaderProps> = ({ toggleSid
             <Menu className="h-5 w-5" />
           </Button>
           <Link to="/dashboard" className="ml-2">
-            <span className="text-xl font-bold text-foreground">
-              paid<span className="text-primary">.co.zw</span>
+            <span className="text-xl font-bold text-white">
+              paid
             </span>
           </Link>
         </div>

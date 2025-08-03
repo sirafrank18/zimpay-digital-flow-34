@@ -37,8 +37,8 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         {/* Sidebar Header with Close Button for Mobile */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
           <Link to="/dashboard" className="flex items-center">
-            <span className="text-xl font-bold text-foreground">
-              paid<span className="text-primary">.co.zw</span>
+            <span className="text-xl font-bold text-white">
+              paid
             </span>
           </Link>
           <Button

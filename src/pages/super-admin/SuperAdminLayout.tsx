@@ -53,8 +53,8 @@ const SuperAdminLayout = () => {
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <h1 className="text-xl font-bold text-sidebar-foreground ml-2">
-                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
+              <h1 className="text-xl font-bold text-white ml-2">
+                paid <span className="text-sm font-normal text-white/70">Admin</span>
               </h1>
             </div>
             <div className="flex items-center gap-2">
@@ -71,8 +71,8 @@ const SuperAdminLayout = () => {
           )}>
             {/* Sidebar Header */}
             <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
-              <h1 className="text-xl font-bold text-sidebar-foreground">
-                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
+              <h1 className="text-xl font-bold text-white">
+                paid <span className="text-sm font-normal text-white/70">Admin</span>
               </h1>
               <Button
                 variant="ghost"
@@ -127,8 +127,8 @@ const SuperAdminLayout = () => {
           <div className="flex-1 flex flex-col min-w-0">
             {/* Desktop Header */}
             <header className="hidden lg:flex h-16 items-center justify-between border-b border-sidebar-border px-6 bg-sidebar">
-              <h1 className="text-xl font-bold text-sidebar-foreground">
-                paid<span className="text-sidebar-primary">.co.zw</span> <span className="text-sm font-normal text-sidebar-foreground/70">Admin</span>
+              <h1 className="text-xl font-bold text-white">
+                paid <span className="text-sm font-normal text-white/70">Admin</span>
               </h1>
               <div className="flex items-center gap-3">
                 <ThemeToggle />
