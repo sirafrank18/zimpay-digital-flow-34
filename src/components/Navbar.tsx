@@ -42,8 +42,8 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <Link to="/" className="text-2xl font-bold text-white">
-              paid
+            <Link to="/" className="flex items-center">
+              <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
             </Link>
           </div>
 

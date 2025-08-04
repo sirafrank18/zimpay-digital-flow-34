@@ -24,9 +24,7 @@ const DashboardDesktopHeader: React.FC<DashboardDesktopHeaderProps> = ({
     <header className="hidden lg:flex h-16 items-center justify-between border-b border-border px-6 bg-background">
       {/* Left section - Logo/Brand */}
       <div className="flex items-center min-w-0">
-        <h1 className="text-xl font-bold text-white">
-          paid
-        </h1>
+        <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
       </div>
 
       {/* Center section - Search */}

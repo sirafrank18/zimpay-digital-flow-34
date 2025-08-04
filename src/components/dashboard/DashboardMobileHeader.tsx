@@ -30,9 +30,7 @@ const DashboardMobileHeader: React.FC<DashboardMobileHeaderProps> = ({ toggleSid
             <Menu className="h-5 w-5" />
           </Button>
           <Link to="/dashboard" className="ml-2">
-            <span className="text-xl font-bold text-white">
-              paid
-            </span>
+            <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
           </Link>
         </div>
         <div className="flex items-center space-x-2">

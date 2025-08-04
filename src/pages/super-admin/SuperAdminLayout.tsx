@@ -53,9 +53,10 @@ const SuperAdminLayout = () => {
               >
                 <Menu className="h-5 w-5" />
               </Button>
-              <h1 className="text-xl font-bold text-white ml-2">
-                paid <span className="text-sm font-normal text-white/70">Admin</span>
-              </h1>
+              <div className="flex items-center ml-2">
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
+                <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
+              </div>
             </div>
             <div className="flex items-center gap-2">
               <ThemeToggle />
@@ -71,9 +72,10 @@ const SuperAdminLayout = () => {
           )}>
             {/* Sidebar Header */}
             <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
-              <h1 className="text-xl font-bold text-white">
-                paid <span className="text-sm font-normal text-white/70">Admin</span>
-              </h1>
+              <div className="flex items-center">
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
+                <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
@@ -127,9 +129,10 @@ const SuperAdminLayout = () => {
           <div className="flex-1 flex flex-col min-w-0">
             {/* Desktop Header */}
             <header className="hidden lg:flex h-16 items-center justify-between border-b border-sidebar-border px-6 bg-sidebar">
-              <h1 className="text-xl font-bold text-white">
-                paid <span className="text-sm font-normal text-white/70">Admin</span>
-              </h1>
+              <div className="flex items-center">
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-8 w-auto" />
+                <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
+              </div>
               <div className="flex items-center gap-3">
                 <ThemeToggle />
                 <Button 

@@ -74,8 +74,8 @@ const Onboarding = () => {
         <div className="max-w-md mx-auto">
           <div className="mb-8">
             {currentSlide === 0 && (
-              <div className="h-32 w-32 rounded-full bg-primary flex items-center justify-center text-4xl font-bold mx-auto mb-6">
-                PZ
+              <div className="h-32 w-32 rounded-full bg-white flex items-center justify-center p-4 mx-auto mb-6">
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="w-full h-full object-contain" />
               </div>
             )}
             
