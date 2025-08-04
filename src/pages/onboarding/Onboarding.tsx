@@ -130,7 +130,7 @@ const Onboarding = () => {
             )}
           </div>
 
-          <h1 className="text-3xl font-bold mb-4">{onboardingSlides[currentSlide].title}</h1>
+          <h1 className="text-3xl font-bold mb-4">Welcome to Paid</h1>
           <p className="text-lg text-white/80 mb-8">{onboardingSlides[currentSlide].description}</p>
 
           <div className="flex justify-between items-center">
