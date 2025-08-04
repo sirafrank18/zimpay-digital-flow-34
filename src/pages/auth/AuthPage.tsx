@@ -91,11 +91,13 @@ const AuthPage = () => {
         )}
       >
         <div 
-          className="absolute w-[250%] h-[100%] bg-brand-orange rounded-[150px] -right-[150%] transition-transform duration-1000 ease-in-out"
+          className="absolute w-[250%] h-[100%] rounded-[150px] -right-[150%] transition-all duration-1000 ease-in-out"
           style={{
+            background: '#1DBFC7',
             transform: isAnimated 
               ? (currentView === "login" ? 'translateX(-60%)' : 'translateX(-40%)') 
-              : 'translateX(0%)'
+              : 'translateX(0%)',
+            boxShadow: isAnimated ? '0 0 50px rgba(29, 191, 199, 0.3)' : 'none'
           }}
         />
         

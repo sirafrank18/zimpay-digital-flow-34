@@ -177,6 +177,23 @@ export const EVENT_TYPES: EventType[] = [
       { name: 'materials', type: 'textarea', label: 'Materials Provided' },
       { name: 'groupDiscount', type: 'boolean', label: 'Group Discount Available' }
     ]
+  },
+  {
+    id: 'bus-ticketing',
+    name: 'Bus Ticketing',
+    icon: '🚌',
+    description: 'Bus transportation and ticketing services',
+    category: 'Transportation',
+    features: ['Route management', 'Seat selection', 'Schedule tracking'],
+    fields: [
+      { name: 'route', type: 'text', label: 'Bus Route', required: true },
+      { name: 'departurePoint', type: 'text', label: 'Departure Point', required: true },
+      { name: 'destination', type: 'text', label: 'Destination', required: true },
+      { name: 'busType', type: 'select', label: 'Bus Type', options: ['Standard', 'Luxury', 'Express', 'Sleeper'] },
+      { name: 'seatCount', type: 'number', label: 'Total Seats' },
+      { name: 'amenities', type: 'multiselect', label: 'Amenities', options: ['WiFi', 'AC', 'Toilet', 'Entertainment', 'Refreshments'] },
+      { name: 'recurring', type: 'boolean', label: 'Recurring Schedule' }
+    ]
   }
 ];
 
@@ -188,5 +205,6 @@ export const EVENT_CATEGORIES = [
   'Business & Leadership',
   'Religious & Spiritual',
   'Non-Profit & Charity',
-  'General Events'
+  'General Events',
+  'Transportation'
 ];
