@@ -37,7 +37,7 @@ const DashboardSidebar: React.FC<DashboardSidebarProps> = ({
         {/* Sidebar Header with Close Button for Mobile */}
         <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
           <Link to="/dashboard" className="flex items-center">
-            <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-10 w-auto" />
+            <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-12 w-auto" />
           </Link>
           <Button
             variant="ghost"

@@ -54,7 +54,7 @@ const SuperAdminLayout = () => {
                 <Menu className="h-5 w-5" />
               </Button>
               <div className="flex items-center ml-2">
-                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-10 w-auto" />
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-12 w-auto" />
                 <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
               </div>
             </div>
@@ -73,7 +73,7 @@ const SuperAdminLayout = () => {
             {/* Sidebar Header */}
             <div className="flex items-center justify-between h-16 px-4 border-b border-sidebar-border">
               <div className="flex items-center">
-                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-10 w-auto" />
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-12 w-auto" />
                 <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
               </div>
               <Button
@@ -130,7 +130,7 @@ const SuperAdminLayout = () => {
             {/* Desktop Header */}
             <header className="hidden lg:flex h-16 items-center justify-between border-b border-sidebar-border px-6 bg-sidebar">
               <div className="flex items-center">
-                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-12 w-auto" />
+                <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="h-16 w-auto" />
                 <span className="text-sm font-normal text-white/70 ml-2">Admin</span>
               </div>
               <div className="flex items-center gap-3">
