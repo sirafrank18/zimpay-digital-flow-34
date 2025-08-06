@@ -121,7 +121,7 @@ const AuthPage = () => {
           <div className="w-full max-w-sm mx-auto mt-12">
             <div className="rounded-lg p-6 bg-white/10 backdrop-blur-sm">
               <div className="flex items-center justify-center mb-4">
-                <div className="h-16 w-16 rounded-full bg-white flex items-center justify-center p-2">
+                <div className="h-24 w-24 rounded-full bg-white flex items-center justify-center p-3">
                   <img src="/lovable-uploads/32326559-0165-4383-8b0f-97c75ca798dc.png" alt="Logo" className="w-full h-full object-contain" />
                 </div>
               </div>
